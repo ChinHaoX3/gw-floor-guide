@@ -8,7 +8,7 @@
   --bg:#f3f5f8; --surface:#ffffff; --ink:#141a24; --muted:#5b6574; --line:#dde2ea;
   --accent:#1f47c9; --accent-soft:#e3e9fb; --star:#c47a00;
   --t-dia:#4b2fa3; --t-plat:#3d4b5e; --t-gold:#8a6100;
-  --ok:#17784a; --ok-soft:#dff3e8; --rec:#2c5fa8; --rec-soft:#e2ecf8;
+  --ok:#17784a; --ok-soft:#dff3e8; --rec:#2c5fa8; --rec-soft:#e2ecf8; --star2:#7a3fa0; --star2-soft:#f1e6f8;
   --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
   --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -17,12 +17,12 @@
   --bg:#0f141c; --surface:#171e29; --ink:#e6eaf1; --muted:#97a2b3; --line:#283243;
   --accent:#7d9cff; --accent-soft:#1f2b4d; --star:#f2b24a;
   --t-dia:#b9a6ff; --t-plat:#b7c3d4; --t-gold:#e8c060;
-  --ok:#5fd39a; --ok-soft:#163327; --rec:#8db6f2; --rec-soft:#1a2a42; color-scheme:dark}}
+  --ok:#5fd39a; --ok-soft:#163327; --rec:#8db6f2; --rec-soft:#1a2a42; --star2:#d3a8f0; --star2-soft:#30213d; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f141c; --surface:#171e29; --ink:#e6eaf1; --muted:#97a2b3; --line:#283243;
   --accent:#7d9cff; --accent-soft:#1f2b4d; --star:#f2b24a;
   --t-dia:#b9a6ff; --t-plat:#b7c3d4; --t-gold:#e8c060;
-  --ok:#5fd39a; --ok-soft:#163327; --rec:#8db6f2; --rec-soft:#1a2a42; color-scheme:dark}
+  --ok:#5fd39a; --ok-soft:#163327; --rec:#8db6f2; --rec-soft:#1a2a42; --star2:#d3a8f0; --star2-soft:#30213d; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45}
 .wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:20px 48px}
@@ -60,7 +60,7 @@ li:first-child{border-top:0}
 .name{font-weight:600;display:flex;gap:8px;flex-wrap:wrap;align-items:baseline}
 .tier{font:600 .66rem var(--f-mono);text-transform:uppercase;letter-spacing:.07em}
 .tier.d{color:var(--t-dia)}.tier.pp,.tier.p{color:var(--t-plat)}.tier.g{color:var(--t-gold)}
-.note{color:var(--muted);font-size:.86rem;margin-top:2px}
+.note{display:block;color:var(--muted);font-size:.86rem;margin-top:2px}
 .tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
 .tag{font-size:.7rem;padding:2px 7px;border-radius:4px;background:var(--bg);border:1px solid var(--line);color:var(--muted)}
 .tag.hit{background:var(--accent-soft);border-color:transparent;color:var(--accent);font-weight:600}
@@ -73,12 +73,22 @@ li:first-child{border-top:0}
 .sg.r{color:var(--rec);background:var(--rec-soft)}
 .sg.n{color:var(--muted);border-color:var(--line)}
 .sgseg button b{font:600 .7rem var(--f-mono);opacity:.7;margin-left:4px}
-details.ev{margin-top:6px;font-size:.82rem}
-details.ev summary{cursor:pointer;color:var(--accent);font-weight:500;list-style:none;display:inline-flex;gap:6px;align-items:center}
-details.ev summary::-webkit-details-marker{display:none}
-details.ev summary::before{content:"▸";font-size:.7rem;transition:transform .15s}
-details.ev[open] summary::before{transform:rotate(90deg)}
-.evb{display:grid;gap:6px;margin-top:6px;padding:8px 10px;background:var(--bg);border-radius:8px;border:1px solid var(--line)}
+details.vd{min-width:0}
+details.vd>summary{cursor:pointer;list-style:none;display:block;border-radius:6px;outline-offset:3px}
+details.vd>summary::-webkit-details-marker{display:none}
+details.vd>summary:focus-visible{outline:2px solid var(--accent)}
+details.vd>summary:hover .nm{color:var(--accent)}
+.more{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:.78rem;font-weight:500;color:var(--accent)}
+.more::before{content:"▸";font-size:.68rem;transition:transform .15s}
+details.vd[open] .more::before{transform:rotate(90deg)}
+details.vd[open] .more .o{display:none}
+details.vd:not([open]) .more .c{display:none}
+.vbody{margin-top:8px;display:grid;gap:10px}
+.what{margin:0;font-size:.9rem;line-height:1.5;max-width:68ch}
+.cs{display:inline-flex;align-items:center;font:600 .66rem var(--f-mono);letter-spacing:.04em;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.cs.l2{color:var(--star2);background:var(--star2-soft)}
+.cs.l1{color:var(--muted);border:1px solid var(--line)}
+.evb{display:grid;gap:8px;padding:8px 10px;background:var(--bg);border-radius:8px;border:1px solid var(--line);font-size:.82rem}
 .evb h4{margin:0;font:600 .64rem var(--f-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
 .evb ul{background:none;border:0;border-radius:0;display:grid;gap:3px}
 .evb li{display:block;padding:0 0 0 12px;border:0;position:relative;line-height:1.4}
@@ -89,17 +99,19 @@ details.ev[open] summary::before{transform:rotate(90deg)}
 .summary div{flex:1 1 150px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .summary b{display:block;font:800 1.4rem var(--f-display);color:var(--ink);font-variant-numeric:tabular-nums}
 .summary .w b{color:var(--ok)}.summary .r b{color:var(--rec)}
-@media (prefers-reduced-motion:reduce){details.ev summary::before{transition:none}}
+.summary .s b{color:var(--star2)}
+@media (prefers-reduced-motion:reduce){.more::before{transition:none}}
 footer{margin-top:28px;font-size:.82rem;color:var(--muted);max-width:68ch}
 footer a{color:var(--accent)}
 @media (max-width:420px){li{grid-template-columns:54px 1fr auto;gap:8px;padding:10px}}
+@media (max-width:640px){.bar{position:static}}
 </style>
 
 <div class="wrap">
 <header>
   <div class="meta">13–15 Oct 2026 · Sands Expo, Singapore</div>
   <h1>GovWare 2026 Floor Guide</h1>
-  <p>All 210 listed exhibitors, sorted into 18 security categories, with each vendor's Singapore public-sector track record and certifications. Filter by category and track record, star the stands you want, then group your shortlist by booth row to plan your walk.</p>
+  <p>All 210 listed exhibitors, sorted into 18 security categories. Tap any exhibitor to see what it sells, its Singapore public-sector track record and its certifications, including CSA STAR. Star the stands you want, then group your shortlist by booth row to plan your walk.</p>
   <div class="summary" id="summary"></div>
 </header>
 
@@ -117,6 +129,7 @@ footer a{color:var(--accent)}
   </div>
   <div class="row">
     <div class="seg sgseg" id="sgseg" role="group" aria-label="Singapore track record"></div>
+    <button class="toggle" id="star2" aria-pressed="false">CSA STAR Level 2</button>
   </div>
   <div class="chips" id="chips" role="toolbar" aria-label="Categories"></div>
   <div class="status" id="status"></div>
@@ -129,7 +142,7 @@ footer a{color:var(--accent)}
   <p>Exhibitor names and booth numbers come from the official <a href="https://www.govware.sg/visit/govware-2026-sponsors-exhibitors" target="_blank" rel="noopener">GovWare 2026 Sponsors &amp; Exhibitors page</a> as of 12 Oct 2026. The organiser updates the list periodically, so confirm booths onsite.</p>
   <p>The categories are my own grouping. Exhibitors' self-selected tags on the official site are too broad to plan with (many small firms tick 15+ boxes), so each vendor is placed by what it actually sells: its GovWare profile for smaller and pavilion exhibitors, and its known product lines for established vendors. Platform vendors appear in several categories.</p>
   <p><strong>How the Singapore track record was checked (12 Oct 2026).</strong> <em>Gov work</em> means a public record of a contract, deployment or formal partnership with a Singapore agency: a GeBIZ award to the company, its product named in an agency's tender bought through a reseller, a GovTech panel seat, or a signed agreement with CSA or another agency. <em>SG-recognised</em> means a Singapore credential without a confirmed contract: a CSA licence for penetration testing or managed SOC, Singapore Common Criteria (SCCS) or IMDA MTCS certification, IMDA accreditation, or a CSA programme role such as SG Cyber Safe Advocate, the CyberSG startup zone or a GovTech STACKx speaking slot. <em>None found</em> means nothing turned up in those sources. That does not mean no work: global vendors usually sell to agencies through integrators, and tender descriptions rarely name the product.</p>
-  <p>Sources checked: CSA's <a href="https://www.csro.gov.sg/resources/licensed-service-providers/" target="_blank" rel="noopener">licensed service providers list</a> (9 Oct 2026), the <a href="https://csa.gov.sg/our-programmes/certification-and-labelling-schemes/singapore-common-criteria-scheme/product-list" target="_blank" rel="noopener">SCCS product list</a>, IMDA's <a href="https://www.imda.gov.sg/regulations-and-licensing-listing/ict-standards-and-quality-of-service/it-standards-and-frameworks/compliance-and-certification" target="_blank" rel="noopener">MTCS register</a>, CSA's <a href="https://www.csa.gov.sg/our-programmes/support-for-enterprises/sg-cyber-safe-programme/sg-cybersafe-partnership/advocates/" target="_blank" rel="noopener">SG Cyber Safe Advocates</a>, GeBIZ award data via <a href="https://www.sgpbusiness.com/government/procurement/tender-number/GVT000ETT25000001" target="_blank" rel="noopener">SGPBusiness</a> (a third-party mirror; a S$1 award is a panel seat), agency and vendor announcements. International certifications list FedRAMP (US federal cloud authorisation) where confirmed for sponsors and CNAPP, identity and other key vendors; other exhibitors were not checked for it. ISO 27001 and SOC 2 are near-universal for these vendors, so they are left out.</p>
+  <p>Sources checked: CSA's <a href="https://www.csro.gov.sg/resources/licensed-service-providers/" target="_blank" rel="noopener">licensed service providers list</a> (9 Oct 2026), the <a href="https://csa.gov.sg/our-programmes/certification-and-labelling-schemes/singapore-common-criteria-scheme/product-list" target="_blank" rel="noopener">SCCS product list</a>, IMDA's <a href="https://www.imda.gov.sg/regulations-and-licensing-listing/ict-standards-and-quality-of-service/it-standards-and-frameworks/compliance-and-certification" target="_blank" rel="noopener">MTCS register</a>, CSA's <a href="https://www.csa.gov.sg/our-programmes/support-for-enterprises/sg-cyber-safe-programme/sg-cybersafe-partnership/advocates/" target="_blank" rel="noopener">SG Cyber Safe Advocates</a>, GeBIZ award data via <a href="https://www.sgpbusiness.com/government/procurement/tender-number/GVT000ETT25000001" target="_blank" rel="noopener">SGPBusiness</a> (a third-party mirror; a S$1 award is a panel seat), agency and vendor announcements. <strong>CSA STAR</strong> is the Cloud Security Alliance's assurance registry for cloud services: Level 1 is a published self-assessment (CAIQ), Level 2 is an independent third-party audit, either STAR Certification (ISO 27001 plus the Cloud Controls Matrix) or STAR Attestation (SOC 2 plus the Cloud Controls Matrix). Each listing was checked in the <a href="https://cloudsecurityalliance.org/star/registry" target="_blank" rel="noopener">STAR registry</a> on 13 Oct 2026, by name search and the registry's usual page addresses. The registry has no reliable search, so a vendor marked as not listed may still have an entry under another company name; ask the vendor for its registry link. Levels often apply to specific cloud services, not the whole company, and STAR is irrelevant for hardware and pure services firms. International certifications list FedRAMP (US federal cloud authorisation) where confirmed for sponsors and CNAPP, identity and other key vendors; other exhibitors were not checked for it. ISO 27001 and SOC 2 are near-universal for these vendors, so they are left out.</p>
 </footer>
 </div>
 
@@ -533,6 +546,274 @@ const EV={
 "Waterfall Security Solutions":{c:[["Singapore Common Criteria: WF-600 EAL4+ (Aug 2025), WF-500 EAL4+ (May 2023)","sccs"]]},
 "WhizHack":{c:[["CSA licence: managed SOC (Feb 2026)","csro"]]}
 };
+const SUM={
+"Ensign InfoSecurity":"Singapore's largest pure-play cybersecurity firm, owned by Temasek. Runs managed detection and response and 24/7 SOCs, and offers consulting, threat intelligence and its own detection products, mainly for government, critical infrastructure and large enterprises across APAC.",
+"Singtel":"Singapore's largest telco. Its enterprise arm sells managed security (SOC monitoring, DDoS mitigation, managed firewalls and SASE) bundled with network and cloud connectivity, and is a long-time supplier to government agencies.",
+"ST Engineering":"Singapore defence and engineering group. Its cyber business builds high-assurance products such as NetCrypt network encryptors, DiskCrypt drive encryption and cross-domain guards, and runs managed security and OT security services, mostly for government and critical infrastructure.",
+"TrendAI":"Trend Micro's new brand for its enterprise business. The Trend Vision One platform covers endpoint and XDR, cloud and container security (CNAPP), network, email and AI-application security, plus attack-surface and cyber-risk management.",
+"ABP Securite":"Singapore-headquartered value-added distributor of cybersecurity and network-performance products. Adds advisory, integration, after-sales support and cloud-managed services on top of the brands it carries.",
+"Check Point Software Technologies":"Long-established network security vendor. The Infinity platform spans Quantum firewalls, CloudGuard cloud network security and posture management, Harmony endpoint, email, browser and SASE, and threat-intelligence-driven prevention.",
+"Cisco":"Networking leader with a broad security portfolio: Secure Firewall, Secure Access (SSE), Duo for MFA and device trust, XDR, and Splunk for SIEM and observability. Widely deployed across Singapore enterprise and government networks.",
+"CrowdStrike":"Cloud-native Falcon platform from a single agent: endpoint protection and XDR, cloud security (CNAPP), identity threat protection, Next-Gen SIEM, threat intelligence and Falcon Complete managed detection, with the Charlotte AI analyst.",
+"Fortinet":"Firewall-led security platform built on its own ASICs: FortiGate NGFW, SD-WAN, FortiSASE, OT security, FortiCNAPP for cloud, endpoint, email, and FortiSIEM/SOAR, all tied together in the Security Fabric.",
+"Google Cloud Security":"Google SecOps (SIEM and SOAR), Mandiant threat intelligence and incident response, Security Command Center for cloud posture, and Wiz (acquired 2026). Also offers sovereign and air-gapped Google Distributed Cloud.",
+"Huawei International":"Singapore arm of Huawei. Sells data-centre and campus networking, HiSecEngine firewalls, storage and Huawei Cloud services to telcos, enterprises and the public sector.",
+"Lenovo":"PCs, servers and storage, with ThinkShield device security (firmware and BIOS protection, secure supply chain) and cloud device-management services.",
+"M.Tech Products":"Singapore-headquartered value-added distributor and integrator of cybersecurity and networking products across APAC, adding pre-sales, deployment and support services for the vendors it represents.",
+"NCS":"Singtel group's IT services arm and one of the largest government IT contractors in Singapore. Provides cybersecurity consulting, managed SOC, systems integration and digital services.",
+"Alcatel-Lucent Enterprise":"Enterprise networking and communications: switches, Wi-Fi, network access control and unified communications, with built-in segmentation for zero-trust networks.",
+"Broadcom":"Owns Symantec enterprise security (DLP, web and email security, endpoint protection) and VMware, including Carbon Black. Sells mainly to large enterprises.",
+"Cohesity":"Data security and backup platform, combined with Veritas NetBackup since 2024: backup, immutable snapshots, ransomware detection and recovery, and data classification.",
+"HPE":"Servers, storage and networking. HPE Aruba Networking (now with Juniper) covers Wi-Fi, switching, SSE/SASE and ClearPass network access control, with GreenLake cloud management.",
+"Menlo Security":"Browser security: remote browser isolation and a secure enterprise browser layer that protects web and SaaS access against phishing, malicious files and data leakage, without replacing the user's browser.",
+"Palo Alto Networks":"The broadest security platform: Strata NGFW and Prisma SASE, Cortex XSIAM and XDR for the SOC, Cortex Cloud (CNAPP), and identity security through CyberArk, which it acquired.",
+"Samsung":"Galaxy phones and tablets secured by the Samsung Knox platform: hardware-backed security, Knox Suite device management and certified configurations for regulated users.",
+"SentinelOne":"Singularity platform: AI-driven endpoint protection and XDR, cloud workload security and CNAPP, identity protection, an AI SIEM data lake, and the Purple AI analyst assistant. Operates a Singapore data centre.",
+"ViewQwest":"Singapore ISP providing business fibre, SD-WAN and managed security services such as SASE and firewall-as-a-service.",
+"Abnormal AI":"Behavioural-AI email security for Microsoft 365 and Google Workspace that stops business email compromise, phishing and vendor fraud, plus account-takeover detection.",
+"Exabeam":"SIEM and user behaviour analytics, merged with LogRhythm in 2024: threat detection, investigation and response automation, cloud or self-hosted.",
+"ExtraHop":"Network detection and response (RevealX): decrypts and analyses network traffic to spot threats and lateral movement, plus network performance monitoring.",
+"Horizon3":"NodeZero autonomous pentesting: safely runs real attack paths across internal, external, cloud and identity environments, then re-tests to confirm fixes.",
+"KnowBe4":"Security awareness training and simulated phishing, plus AI-driven human risk management and email security add-ons.",
+"Netskope":"Security service edge and SASE: secure web gateway, CASB, ZTNA, DLP and SD-WAN on its own NewEdge network, which has Singapore points of presence.",
+"Proofpoint":"Email security leader that also sells DLP, insider-threat management, security awareness training and human-risk analytics.",
+"Rubrik":"Zero-trust data security: immutable backup, ransomware detection and recovery, data security posture management, and Active Directory/Entra ID recovery.",
+"Thales":"Defence and security group. Cyber portfolio: CipherTrust encryption and key management, Luna HSMs, SafeNet MFA and access management, Imperva application and API security, plus digital identity documents.",
+"Veeam Software":"Backup, recovery and data resilience for virtual, physical, cloud and SaaS workloads such as Microsoft 365, including the Veeam Data Cloud service.",
+"Wiz":"Leading CNAPP: agentless cloud posture, workload and vulnerability scanning, identity entitlements, code-to-cloud and AI security posture. Part of Google since March 2026.",
+"Zscaler":"Zero Trust Exchange: secure internet access (ZIA), private app access (ZPA), DLP, digital experience monitoring and AI data security, delivered from its own cloud.",
+"ACA Pacific":"Value-added distributor in Singapore and APAC for IT infrastructure, cybersecurity, cloud and data-management products, serving enterprises, SMBs and channel partners.",
+"AD Consulting":"Italian IT integrator with a cybersecurity focus: SOC services, incident response, digital identity, vulnerability management, pentesting and GRC, plus its own IaaS cloud.",
+"Agile Momentum":"AgileMark adaptive on-screen watermarking, which deters people from photographing sensitive data shown on enterprise screens.",
+"AhnLab":"Korean security vendor: V3 antivirus, EDR and XDR, OT/ICS endpoint protection and threat intelligence services.",
+"Aikido Security":"Belgian developer-security platform that combines code scanning (SAST, dependencies, secrets, IaC, containers) with cloud posture checks and auto-triage of findings.",
+"AISTORM":"AsiaInfo's Singapore-based security brand: security technology, network connectivity and consulting services to help organisations manage cyber risk.",
+"Amazon Web Services":"Cloud platform with native security services such as GuardDuty, Security Hub, IAM, KMS, Shield and Inspector. One of the clouds behind Singapore's Government on Commercial Cloud (GCC 2.0).",
+"Ansteroid":"Mobile security startup: FA³ traces Android app behaviour at runtime on-device, and Outsight detects in-app user actions from CPU side channels.",
+"Arcfra":"Hyperconverged infrastructure software combining virtualisation, distributed storage and networking for private cloud and edge deployments.",
+"ASEAN CXO Association":"Regional association of technology and business executives that runs networking and knowledge-sharing events.",
+"Association of Information Security Professionals (AiSP)":"Singapore's professional body for cybersecurity practitioners. Runs its Information Security Body of Knowledge, events, student and SME programmes.",
+"Assurity Trusted Solutions":"Wholly owned GovTech subsidiary providing security testing, penetration testing, assurance and consulting, mainly for the public sector.",
+"Athena Dynamics":"Singapore cybersecurity solutions provider (part of BH Global) delivering threat intelligence, OT monitoring, portable-media scanning and cyber training and competitions, largely for defence, maritime and critical-infrastructure clients.",
+"Axiler":"Singapore AI-native application security company. Its Athena platform finds and prioritises vulnerabilities across code, runtime, APIs, AI agents and cloud, with AI-assisted remediation.",
+"BeyondTrust":"Privileged access management: password and session management, endpoint privilege management, privileged remote access, and identity threat detection.",
+"Bitdefender":"GravityZone endpoint protection, XDR and MDR, plus offensive security and incident response services delivered from its APAC team.",
+"Bitsight":"Security ratings and third-party risk management, with external attack surface and threat intelligence (from its Cybersixgill acquisition).",
+"Blancco":"Certified data erasure for laptops, servers, drives and mobile devices, producing audit-ready erasure certificates.",
+"Blindspot Technologies":"Czech provider of business continuity for online services of banks and telcos: DDoS and bot defence, API and app security, and full-stack visibility.",
+"BNF SG":"Technology solutions for governments and high-stakes organisations: critical-infrastructure protection, AI assurance, information sovereignty and autonomous systems, plus licensed penetration testing.",
+"Bynario":"Italian security research lab whose AI products confirm which scanner findings are actually exploitable, covering exposure validation, source code and supply chain, deployable air-gapped.",
+"Cato Networks":"Single-vendor SASE cloud: SD-WAN, secure web gateway, CASB, ZTNA, firewall-as-a-service and XDR on one global backbone.",
+"Cellebrite":"Digital forensics for investigators: extraction and analysis of phones and computers, case management, and Corellium virtual devices for mobile research.",
+"Censys":"Internet-wide scanning data for attack surface management and threat hunting on exposed hosts and services.",
+"CHT Security":"Cybersecurity arm of Taiwan's Chunghwa Telecom: managed SOC, penetration testing, red teaming and consulting.",
+"CITIC Telecom CPC":"Hong Kong-based ICT provider: MPLS networks, cloud services and managed security (SOC) across Asia-Pacific.",
+"Cloudflare":"Global connectivity cloud: WAF, DDoS and bot protection, CDN, Zero Trust SASE (Cloudflare One), email security and an AI gateway.",
+"Cloudsine":"Singapore company with WebOrion web defacement and threat detection, and a GenAI firewall that guards LLM apps against prompt injection and data leaks.",
+"Crayon":"Global software and cloud licensing partner (Microsoft, AWS and others) with FinOps, cloud and security services.",
+"Cribl":"Telemetry data pipeline (Stream, Lake, Search) that routes, reduces and enriches security and observability data before it reaches the SIEM.",
+"Criminal IP":"Threat intelligence search engine from AI Spera: IP and domain reputation, exposed assets and attack-surface data.",
+"CrimsonLogic":"Singapore e-government solutions company behind platforms such as TradeNet and eLitigation, offering digital trade, customs and justice systems plus managed security.",
+"Cyber Test Systems":"French firm offering hybrid cyber ranges, network traffic generators, pentest platforms, and cyber training and testing for defence and government.",
+"Cyberhaven":"Data security that traces data lineage to stop leaks and insider risk, including data pasted into AI tools.",
+"CyberSG":"CSA-backed national hub for cyber talent, innovation and growth. Its booth hosts a cluster of Singapore cyber startups.",
+"CyberSG TIG Collaboration Centre":"CSA and NUS centre that incubates cyber startups, runs industry challenge calls and builds the talent pipeline.",
+"Cyble":"AI-driven threat intelligence: dark-web and leak monitoring, attack surface management, brand protection and takedowns.",
+"Cymulate":"Exposure validation: breach-and-attack simulation, automated red teaming and attack surface checks to prove which controls work.",
+"Czech Pavilion":"Country pavilion of Czech security companies, including GoodAccess, GreyCortex, MyQ, EmbedIT, Blindspot and HackedList.",
+"DataBahn":"AI-powered security data fabric that collects, normalises and routes logs to SIEMs and data lakes to cut ingestion cost.",
+"Datadog":"Observability platform with security products: Cloud SIEM, cloud posture management, workload protection and application/API protection.",
+"Delinea":"Privileged access management (Secret Server, Privilege Manager), cloud identity security and identity threat detection.",
+"digiDations":"AI-driven security validation tools (ATLAS, APOLLO, HELIOS, ORION) that test and monitor defences against current attacker techniques.",
+"DNV Business Assurance":"Certification body for ISO 27001 and other standards, plus OT cyber assurance and licensed penetration testing.",
+"DRIVESEC":"Turin-based developer of security testing platforms and AI compliance tools for IoT and automotive products.",
+"DT Asia":"Singapore distributor of security technologies from US, European and Israeli vendors, with a strong focus on encryption, HSMs and PKI for government and banks.",
+"ECQ (e-Cqurity)":"Offensive-security firm that uses attacker-style testing and proactive defence to find weaknesses across IT and OT for finance, critical infrastructure and government.",
+"Elastic":"Elastic Security: SIEM, XDR and endpoint protection built on Elasticsearch analytics, available as Elastic Cloud or self-managed.",
+"EmbedIT":"Czech builder of digital banking and lending platforms with onboarding, fraud, risk and compliance tooling for regulated markets.",
+"EXEO Global":"International arm of Japan's EXEO Group: network and ICT infrastructure engineering and systems integration across Asia.",
+"Feitian Technologies":"Maker of FIDO security keys, smart cards, OTP tokens and card readers for strong authentication.",
+"Filigran":"OpenCTI threat intelligence platform and OpenAEV adversary-exposure validation, available open source or as an enterprise service.",
+"Finland Pavilion":"Country pavilion of Finnish security companies, including Hoxhunt, SensorFleet and SensorFu.",
+"Fortanix":"Data security platform: key management, HSM as a service, confidential computing and post-quantum readiness tooling.",
+"French Pavilion":"Country pavilion of French security companies, including Gatewatcher, Hackuity, Filigran, Sekoia, Secure-IC, Root-Me, Otenti, Cyber Test Systems and Orange Business.",
+"Gatewatcher":"French network detection and response with built-in threat intelligence, for IT and OT networks.",
+"Gevme":"Singapore event-technology platform that runs GovWare's registration. Not a security vendor.",
+"Gigamon":"Deep observability: packet brokers and cloud traffic visibility that feed decrypted network data to security and monitoring tools.",
+"GoodAccess":"Czech cloud VPN and zero-trust network access service aimed at small and mid-sized businesses.",
+"GreyCortex":"Czech network detection and response (Mendel) for IT and OT networks.",
+"Hack The Box":"Hands-on cyber training: labs, capture-the-flag events and team upskilling platforms for offensive and defensive skills.",
+"HackedList.io":"AI-driven threat intelligence that monitors stolen credentials, ransomware leaks, spoofed domains, malicious apps and brand impersonation.",
+"Hackuity":"French risk-based vulnerability management that aggregates scanner and pentest findings and prioritises them with threat context.",
+"Hammerspace":"Global data platform and parallel file system that orchestrates unstructured data across sites and clouds, aimed at AI and HPC.",
+"Hoxhunt":"Finnish human-risk platform: adaptive phishing training, a one-click report button and automated triage of reported emails.",
+"Huntress":"Managed EDR, identity threat detection, SIEM and awareness training for small and mid-sized organisations, backed by a 24/7 SOC.",
+"identi.ly":"Singapore platform that protects sensitive documents end to end inside Outlook and Microsoft 365, using recipient identity checks, encryption, e-signatures and post-send controls.",
+"IdentityPlane":"Young company offering GoAM cloud-native identity and access management and PurpleSwarm AI-driven autonomous pentesting.",
+"IGLOO Corporation":"Korean SIEM and SOC vendor offering managed security services, threat intelligence, AI security automation and OT security.",
+"Indonesia ICT Business Association":"Indonesian association of ICT companies (APTIKNAS).",
+"Infocomm Media Development Authority":"Singapore's infocomm and media regulator and industry developer. Runs IMDA Accreditation and the MTCS cloud standard, and hosts several vendors in its zone.",
+"Information Security Officers Group":"Community group for information security officers to share practices and network.",
+"Insider Security":"Singapore company detecting breaches early: UEBA for cloud and OS monitoring, database activity monitoring and compliance log review.",
+"Inspire-Tech":"Singapore developer of EasiShare secure file sharing (access control, audit trails, endpoint sync) and reseller of ONLYOFFICE self-hosted document editing.",
+"ITE College East":"Singapore technical institute offering cybersecurity and IT courses (IHL Pavilion).",
+"ITE College West":"Singapore technical institute offering cybersecurity and IT courses (IHL Pavilion).",
+"Intercede":"UK credential management software (MyID) for PKI smart cards, FIDO keys and mobile credentials, widely used by governments and defence.",
+"IPS":"Italian provider of cyber intelligence and investigation platforms for law enforcement, intelligence and defence in over 40 countries.",
+"ISACA Singapore Chapter":"Professional body for audit, risk and governance; local home of CISA, CISM and CRISC certifications.",
+"ISC2":"Global cybersecurity certification body behind CISSP, CCSP and the entry-level CC certification.",
+"Italy Pavilion":"Country pavilion of Italian security companies, including AD Consulting, Bynario, IPS, Random Power, Sentrynet and Yalla.",
+"ITSEC Asia":"Southeast Asian cybersecurity services firm: penetration testing, managed detection and response, digital forensics and consulting.",
+"Janus Cyber":"Spin-off of Taiwan's ITRI selling AI-powered tools that find weaknesses, score risk and continuously monitor security posture, including OT.",
+"Keysight Technologies":"Network and security testing: BreakingPoint traffic and attack simulation, threat simulation, and network visibility packet brokers.",
+"LogEase":"Unified log management plus a SecOps platform (SIEM, UEBA, SOAR) for detecting and responding to intrusions and insider risk.",
+"LRQA":"Assurance and certification group (formerly Lloyd's Register Quality Assurance): ISO certification plus cyber services including pentesting and SOC.",
+"ManageEngine":"Zoho's enterprise IT management division: Active Directory and identity tools, PAM360, Log360 SIEM, endpoint management and network monitoring at mid-market prices.",
+"Manticore":"ShieldProbe AI offensive-security platform: runs pentests, turns confirmed exploits into virtual patches, proposes code fixes and plugs into CI/CD.",
+"Mattermost":"Secure collaboration and chat platform that can run self-hosted or air-gapped, popular with defence and critical operations.",
+"Mimecast":"Email security, security awareness training, archiving and collaboration-tool protection.",
+"Momentum Z":"Singapore cyber services firm: VAPT, CISO-as-a-Service, compliance and risk assessments for SMEs to multinationals.",
+"MyQ":"Czech print management software with secure print release, usage accounting and document capture.",
+"Nanyang Polytechnic":"Singapore polytechnic with cybersecurity diplomas and industry projects (IHL Pavilion).",
+"NCL, National University of Singapore":"NUS-hosted national lab providing testbeds and infrastructure for cybersecurity research.",
+"NiCE, Nanyang Technological University":"NTU security evaluation centre that tests products and supports national certification and labelling schemes.",
+"NCS":"Singtel group's IT services arm and one of the largest government IT contractors in Singapore. Provides cybersecurity consulting, managed SOC, systems integration and digital services.",
+"Netcraft":"Phishing and online fraud detection with fast takedowns and brand protection.",
+"Netrust":"Singapore's IMDA-accredited certificate authority since 1997: digital certificates, PKI, digital signing (nSign) and Singpass-linked authentication for government and businesses.",
+"NetWitness":"SIEM, network detection and forensics (formerly RSA NetWitness) for full-packet visibility and investigations.",
+"Nexora Security":"Continuous compliance-control testing that runs non-invasive checks on live systems and feeds results into GRC tools.",
+"Nextcloud":"Self-hosted collaboration suite (files, chat, office) for organisations that need data sovereignty.",
+"NinjaOne":"Cloud endpoint management, patching, remote monitoring and backup for IT teams and MSPs.",
+"Noma Security":"AI security platform that discovers AI models and agents, manages their security posture and protects them at runtime.",
+"NSFOCUS":"Network security vendor known for anti-DDoS, WAF, intrusion prevention, vulnerability scanning and managed security.",
+"Nutanix":"Hybrid multicloud infrastructure software (hyperconverged compute and storage, Kubernetes, data services) with built-in ransomware protection.",
+"OneT Solutions":"Singapore IT company providing enterprise solutions, systems integration and consulting, including SOC, network and endpoint security.",
+"OT-ISAC":"Information-sharing community for OT and critical-infrastructure operators in the region.",
+"OPSWAT":"Critical-infrastructure protection: MetaDefender multiscanning and file sanitisation (CDR), media-scanning kiosks, data diodes and OT network security.",
+"Orange Business":"Orange's enterprise arm: Orange Cyberdefense managed security and CSIRT, plus network and cloud services.",
+"Otenti":"French app that cryptographically verifies a caller's or texter's identity, so people can trust calls and SMS before responding.",
+"OverArX":"SUTD spin-off whose ThreatMirror tool maps attack paths to critical infrastructure and recommends targeted fixes.",
+"Pacific Tech":"Singapore value-added distributor of cybersecurity products and managed services, carrying brands such as Sophos and Fortinet.",
+"Parasoft":"Software testing tools: static analysis for safety and security standards, API testing and unit testing, for C/C++, Java and .NET.",
+"Pentera":"Automated security validation: safe automated pentesting of internal, external and cloud environments, including ransomware emulation.",
+"Picus Security":"Breach-and-attack simulation and security control validation that shows which threats your defences actually stop.",
+"Ping Identity":"Workforce and customer identity: SSO, MFA, identity verification and access governance (merged with ForgeRock).",
+"Plainbit":"Korean firm offering digital forensics, incident response, eDiscovery, audits and security consulting, with a Singapore office.",
+"PQ Station":"NTU spin-off helping organisations move to post-quantum cryptography, from cryptographic inventory and assessment through rollout.",
+"Quokka":"Mobile app security and privacy vetting for enterprise and government app stores (formerly Kryptowire).",
+"Random Power":"Italian maker of quantum random number generators as USB devices, server platforms and embedded chips.",
+"Red Alpha Cybersecurity":"Singapore firm that trains and places cybersecurity and AI professionals with organisations that have skills gaps.",
+"Red Hat":"OpenShift container platform, Red Hat Enterprise Linux, Advanced Cluster Security for Kubernetes and Ansible automation.",
+"Republic Polytechnic":"Singapore polytechnic with cybersecurity and IT programmes (IHL Pavilion).",
+"Root-Me PRO":"French hands-on cyber training platform with challenges, labs and CTFs for teams.",
+"Rubrik":"Zero-trust data security: immutable backup, ransomware detection and recovery, data security posture management, and Active Directory/Entra ID recovery.",
+"Safeware":"Singapore APAC partner of Glasswall: file sanitisation (CDR) that rebuilds documents to strip malicious content, in cloud, air-gapped or embedded form.",
+"Samsung":"Galaxy phones and tablets secured by the Samsung Knox platform: hardware-backed security, Knox Suite device management and certified configurations for regulated users.",
+"SANS Institute":"Cybersecurity training and GIAC certifications delivered by practitioners.",
+"Sansec":"Chinese cryptographic hardware maker: crypto chips, HSMs, key management, digital identity and post-quantum products.",
+"Sapience Consulting":"Singapore training provider for cybersecurity, IT governance and project management certifications.",
+"Sasa Software":"Israeli content disarm and reconstruction (GateScanner) for files, email and removable media.",
+"SC Cyber (softScheck APAC)":"Research-driven security testing firm focused on software and application security, with TÜV Saarland as audit partner for testing certification; also licensed SOC services.",
+"Secure-IC":"French embedded security IP: secure elements, hardware roots of trust, side-channel protection and post-quantum crypto IP for chips.",
+"SecureAge Technology":"Singapore data-centric security: SecureData file encryption that protects every file everywhere, plus endpoint protection.",
+"SecureFlag":"Hands-on secure coding training with real development environments and labs.",
+"SecurityScorecard":"Security ratings, supply-chain and third-party risk management, and threat intelligence.",
+"Sekoia.io":"French SOC platform (SIEM, XDR and SOAR) with built-in cyber threat intelligence.",
+"Semperis":"Identity resilience for Active Directory and Entra ID: backup and forest recovery, identity threat detection and change auditing.",
+"SensorFleet":"Finnish open NDR platform linking OT, IT and cloud for threat detection, scanning and incident response.",
+"SensorFu":"Finnish SensorFu Beacon, which continuously probes IT and OT networks for leak paths and alerts when segmentation fails.",
+"Sentrynet":"Italian AI-driven security platform protecting executives, mobile users and communications across digital and physical environments, on-premises or private cloud.",
+"SentinelOne":"Singularity platform: AI-driven endpoint protection and XDR, cloud workload security and CNAPP, identity protection, an AI SIEM data lake, and the Purple AI analyst assistant. Operates a Singapore data centre.",
+"SGTech":"Singapore's tech industry association, representing ICT companies and co-running international pavilions.",
+"Silence Laboratories":"Cryptographic computing that lets banks and data partners run analytics on encrypted data without exposing records.",
+"Silent Push":"Preemptive threat intelligence that tracks attacker infrastructure (domains, DNS, IPs) before it is used.",
+"Silverfort":"Agentless identity protection: MFA for legacy systems and service accounts, identity threat detection and non-human identity security.",
+"Singapore Polytechnic":"Singapore polytechnic with cybersecurity programmes and industry projects (IHL Pavilion).",
+"SUTD (iTrust)":"SUTD's iTrust centre runs OT security research testbeds such as water treatment and power grid replicas.",
+"SIOS Technology":"High-availability clustering and disaster recovery for applications such as SQL Server and SAP, on-premises and in cloud.",
+"Snyk":"Developer security: open-source dependency, code, container, IaC and AI-generated code scanning built into developer workflows.",
+"Sonatype":"Software supply chain security: Nexus repository, open-source risk management, malicious-package firewall and SBOM management.",
+"SonicWall":"Firewalls, cloud secure edge, email security and managed detection for small and mid-sized businesses and MSPs.",
+"Sovereign AI":"Armor's security-governed enterprise AI platform (chat, build, workflow and data tools) with controls for security teams and cost oversight.",
+"SpeQtral":"Singapore quantum communications company: satellite and fibre quantum key distribution. Runs IMDA's National Quantum-Safe Network Plus with SPTel.",
+"ST Engineering":"Singapore defence and engineering group. Its cyber business builds high-assurance products such as NetCrypt network encryptors, DiskCrypt drive encryption and cross-domain guards, and runs managed security and OT security services, mostly for government and critical infrastructure.",
+"Stellar Cyber":"Open XDR and AI-driven SecOps platform combining SIEM, NDR and SOAR, popular with MSSPs.",
+"Strongkeep":"Bundled essential security services on one platform for companies without a dedicated security chief.",
+"SUSE":"Enterprise Linux, Rancher Kubernetes management and NeuVector container security.",
+"Sygnia":"Temasek-owned incident response and managed XDR firm, also offering cyber readiness and resilience consulting.",
+"Temasek Polytechnic":"Singapore polytechnic with cybersecurity and digital forensics programmes (IHL Pavilion).",
+"Tenable":"Exposure management: Nessus, Tenable One, vulnerability management, cloud security (CNAPP), OT security and identity exposure.",
+"Terrabit Networks":"Singapore systems integrator for core network infrastructure, optical transport and cybersecurity, backed by a 24/7 operations centre.",
+"Thales":"Defence and security group. Cyber portfolio: CipherTrust encryption and key management, Luna HSMs, SafeNet MFA and access management, Imperva application and API security, plus digital identity documents.",
+"The Thought Projects":"Singapore quantum-security company that tests QKD systems (white, grey and black box) and builds products to protect quantum networks.",
+"ThreatBook":"Threat intelligence platform, network threat detection and cloud sandbox.",
+"Toshiba Asia Pacific":"Fibre-based quantum key distribution systems and key management for quantum-safe networks.",
+"Trellix":"XDR, endpoint (ex-McAfee), email, network (ex-FireEye) and data security.",
+"TXOne Networks":"OT security: industrial endpoint protection, OT network IPS and portable scanners for air-gapped assets.",
+"UpGuard":"Attack surface management, third-party risk ratings and automated vendor questionnaires.",
+"Upwind Security":"Runtime-first CNAPP using eBPF sensors: cloud posture, workload protection, vulnerability prioritisation and API security.",
+"Veridico":"Singapore firm offering identity verification, digital signing, blockchain document verification and AI knowledge tools.",
+"VeriGrey":"Lifecycle assurance for AI agents: pre-deployment testing for security, policy and behaviour issues, then runtime monitoring with audit reports.",
+"Vicarius":"vRx vulnerability remediation: automated patching, scripted fixes and patchless protection.",
+"VulnCheck":"Exploit and vulnerability intelligence: known-exploited lists, exploit PoCs and initial-access signals.",
+"WatchGuard Technologies":"Firewalls, endpoint security, AuthPoint MFA and Wi-Fi for small and mid-sized businesses and MSPs.",
+"Waterfall Security Solutions":"Unidirectional security gateways (data diodes) that let OT data out without letting attacks in; Common Criteria EAL4+ certified in Singapore.",
+"WhizHack":"OT security and cyber range provider whose Singapore entity is CSA-licensed for managed SOC.",
+"Yalla Security":"Italian firm offering Orion AI exposure assessment, Atlas AI MDR with a 24/7 SOC, and pentesting, red teaming, OT security and GRC advisory.",
+"Zavior":"AI regulatory technology helping startups in Singapore and Australia meet Cyber Essentials, ISO 27001/42001 and PDPA requirements.",
+"Zeroport":"Non-IP secure remote access that isolates critical infrastructure from network-based attacks.",
+"Zoho Corporation":"Business SaaS suite (Zoho One, Mail, CRM, Workplace) and parent of ManageEngine IT management tools."
+};
+
+// CSA STAR registry (checked 13 Oct 2026). [level, detail, registry slug]
+const STAR={
+"Zscaler":[2,"Level 2 Certification + Level 1 (listed since 2019)","zscaler"],
+"Palo Alto Networks":[2,"Level 2 Certification + Level 1 (since 2020)","palo-alto-networks"],
+"Netskope":[2,"Level 2 Certification + Level 1; CSA Trusted Cloud Provider (since 2016)","netskope"],
+"CrowdStrike":[2,"Level 2 Certification + Level 1 for Falcon Platform (since 2017)","crowdstrike-inc"],
+"TrendAI":[2,"Level 2 Certification + Level 1 for Vision One, Cloud One, Apex One SaaS, Cloud App Security (since 2021)","trend-micro-incorporated"],
+"Cisco":[2,"Level 2 for Secure Access and Webex Suite (Certification) and Webex Contact Center (Attestation); other services Level 1","cisco-systems"],
+"Google Cloud Security":[2,"Level 2 for Google Cloud Platform (Certification + Attestation) and Workspace (Attestation)","google"],
+"Amazon Web Services":[2,"Level 2 Certification + Level 1","amazon"],
+"Huawei International":[2,"Huawei Cloud: Level 2 Certification + Level 1 (listed under Huawei Cloud Computing Technologies)","huawei-software-technologies-co-ltd"],
+"Rubrik":[2,"Level 2 Certification + Level 1 (since 2024)","rubrik"],
+"Veeam Software":[2,"Level 2 Certification + Level 1 for Veeam Data Cloud (since 2025)","veeam-software-company"],
+"Ping Identity":[2,"Level 2 Attestation + Level 1 (since 2021)","ping-identity"],
+"Mimecast":[2,"Level 2 Attestation + Level 1 (since 2015)","mimecast"],
+"Elastic":[2,"Level 2 Certification + Level 1 for Elastic Cloud (since 2019)","elasticsearch-b-v"],
+"Zoho Corporation":[2,"Level 2 Certification + Level 1 for Zoho services (since 2021)","zoho-corporation-pvt-ltd"],
+"Thales":[2,"Level 2 Certification + Level 1 for Imperva Application Security, CipherTrust DSPaaS, Data Protection on Demand, SafeNet Trusted Access, IdCloud","thales-dis-cpl-canada-inc"],
+"Nutanix":[2,"Level 2 Certification + Level 1 for Nutanix Cloud Clusters, Cloud Manager and Central (2024–26)","nutanix-inc"],
+"ExtraHop":[2,"Level 2 Attestation + Level 1 for RevealX (since 2020)","extrahop"],
+"Red Hat":[2,"Level 2 Certification + Level 1 for OpenShift (since 2013)","red-hat-openshift"],
+"Insider Security":[2,"Level 2 Certification + Level 1 (since 2023)","insider-security-pte-ltd"],
+"Lenovo":[2,"Level 2 Certification for UDS Core cloud platform; 9 other services Level 1 (since 2022)","lenovo"],
+"CHT Security":[0,"Parent Chunghwa Telecom: Level 2 Certification for hicloud (since 2014). CHT Security itself not listed","chunghwa-telecom-co-ltd"],
+"Wiz":[1,"Level 1 self-assessment (since 2024)","wiz"],
+"Check Point Software Technologies":[1,"Level 1 for Harmony Email & Collaboration and SASE (Oct 2026)","check-point-software-technologies"],
+"Fortinet":[1,"Level 1 for FortiCare, FortiCloud, FortiGuard (since 2023)","fortinet"],
+"SentinelOne":[1,"Level 1 for Singularity Platform (since 2022)","sentinelone"],
+"Cloudflare":[1,"Level 1 (since 2022)","cloudflare-inc"],
+"Proofpoint":[1,"Level 1 (since 2022)","proofpoint-inc"],
+"Abnormal AI":[1,"Level 1 (since 2023)","abnormal-ai"],
+"Aikido Security":[1,"Level 1 (since 2026)","aikido-security"],
+"AD Consulting":[1,"Level 1 for AD IAAS cloud (since 2025)","ad-consulting-s-p-a"],
+"KnowBe4":[1,"Level 1 (since 2018)","knowbe4-inc"],
+"SecurityScorecard":[1,"Level 1 (since 2023)","securityscorecard"],
+"Datadog":[1,"Level 1 (since 2018)","datadog"],
+"Tenable":[1,"Level 1 for Vulnerability Management (2018) and Cloud Security (2026)","tenable-inc"],
+"Cato Networks":[1,"Level 1 for Cato Cloud (since 2017)","cato-networks"],
+"Cymulate":[1,"Level 1 (since 2022)","cymulate"],
+"Picus Security":[1,"Level 1 (since 2023)","picus-security"],
+"Bitsight":[1,"Level 1 (since 2023)","bitsight-technologies"],
+"Delinea":[1,"Level 1 for Secret Server Cloud, listed as Thycotic Software (since 2019)","thycotic-software"],
+"Cloudsine":[1,"Level 1 for WebOrion (since 2021)","cloudsine"],
+"HPE":[1,"Level 1 for Aruba Networking Central and Compute Ops Management","hewlett-packard-enterprise"],
+"Broadcom":[1,"VMware services incl. Carbon Black Cloud: Level 1","vmware-inc"],
+"ManageEngine":[0,"Not listed separately; parent Zoho Corporation holds Level 2 for Zoho services","zoho-corporation-pvt-ltd"],
+"Menlo Security":[1,"Level 1 for Menlo Security Isolation Platform (2026)","menlo-security-inc"]
+};
+
 const EVKEYS=new Set(Object.keys(EV));
 const isOrg=r=>r[3].every(c=>c==="org");
 function sgTier(r){if(isOrg(r))return"x";const e=EV[r[0]];if(e&&e.g&&e.g.length)return"w";if(e&&e.c&&e.c.length)return"r";return"n"}
@@ -541,7 +822,7 @@ const SGL={w:"SG gov work",r:"SG-recognised",n:"None found"};
 const TIER={d:"Diamond",pp:"Platinum Plus",p:"Platinum",g:"Gold"};
 const ORDER=DOMAINS.flatMap(d=>d[1]);
 const DOM_OF={};DOMAINS.forEach(([n,ks])=>ks.forEach(k=>DOM_OF[k]=n));
-const state={cat:"all",q:"",spons:false,mine:false,by:"cat",sg:"all"};
+const state={cat:"all",q:"",spons:false,mine:false,by:"cat",sg:"all",star2:false};
 let stars=new Set();
 try{stars=new Set(JSON.parse(localStorage.getItem("gw26stars")||"[]"))}catch(e){}
 try{const s=JSON.parse(localStorage.getItem("gw26state")||"{}");if(s.cat&&(s.cat==="all"||CATS[s.cat]))state.cat=s.cat;if(s.by==="row")state.by="row"}catch(e){}
@@ -561,25 +842,29 @@ function renderChips(){
 chipsEl.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;state.cat=b.dataset.k;save();renderChips();render();const nb=chipsEl.querySelector(`[data-k="${state.cat}"]`);if(nb)nb.scrollIntoView({inline:"nearest",block:"nearest"})});
 
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function evBlock(r){
-  const e=EV[r[0]];if(!e)return"";
-  const sec=(k,h)=>e[k]&&e[k].length?`<div><h4>${h}</h4><ul>${e[k].map(([t,s])=>`<li>${esc(t)}<a href="${SRC[s]}" target="_blank" rel="noopener">source ↗</a></li>`).join("")}</ul></div>`:"";
-  const n=(e.g||[]).length+(e.c||[]).length+(e.i||[]).length;
-  return `<details class="ev"><summary>Track record &amp; certifications (${n})</summary><div class="evb">${sec("g","Singapore government work")}${sec("c","Singapore credentials")}${sec("i","International")}</div></details>`;
+const STARURL="https://cloudsecurityalliance.org/star/registry/";
+function detail(r){
+  const e=EV[r[0]]||{};const st=STAR[r[0]];const org=isOrg(r);
+  const lnk=(u,l)=>`<a href="${u}" target="_blank" rel="noopener">${l} ↗</a>`;
+  const sec=(arr,h)=>arr&&arr.length?`<div><h4>${h}</h4><ul>${arr.map(([t,s])=>`<li>${esc(t)}${lnk(SRC[s],"source")}</li>`).join("")}</ul></div>`:"";
+  const none=!org&&!(e.g&&e.g.length)&&!(e.c&&e.c.length)?`<div><h4>Singapore track record</h4><ul><li>Nothing found in Singapore government sources</li></ul></div>`:"";
+  const starSec=st?`<div><h4>CSA STAR</h4><ul><li>${esc(st[1])}${lnk(STARURL+st[2],"registry")}</li></ul></div>`:(org?"":`<div><h4>CSA STAR</h4><ul><li>Not found in the STAR registry</li></ul></div>`);
+  return `<div class="vbody"><p class="what">${esc(SUM[r[0]]||r[4]||"")}</p><div class="evb">${sec(e.g,"Singapore government work")}${sec(e.c,"Singapore credentials")}${none}${starSec}${sec(e.i,"International")}</div></div>`;
 }
 function item(r){
-  const on=stars.has(r[0]);const t=sgTier(r);
-  return `<li><div class="booth">${esc(r[1])}</div><div class="main"><div class="name">${esc(r[0])}${r[2]?`<span class="tier ${r[2]}">${TIER[r[2]]}</span>`:""}${t!=="x"?`<span class="sg ${t}">${SGL[t]}</span>`:""}</div>${r[4]?`<div class="note">${esc(r[4])}</div>`:""}<div class="tags">${r[3].map(c=>`<span class="tag${c===state.cat?" hit":""}">${CATS[c][0]}</span>`).join("")}</div>${evBlock(r)}</div><button class="star" data-n="${esc(r[0])}" aria-pressed="${on}" aria-label="${on?"Remove from":"Add to"} shortlist: ${esc(r[0])}">${on?"★":"☆"}</button></li>`;
+  const on=stars.has(r[0]);const t=sgTier(r);const st=STAR[r[0]];
+  const badges=(r[2]?`<span class="tier ${r[2]}">${TIER[r[2]]}</span>`:"")+(t!=="x"?`<span class="sg ${t}">${SGL[t]}</span>`:"")+(st&&st[0]?`<span class="cs l${st[0]}">STAR L${st[0]}</span>`:"");
+  return `<li><div class="booth">${esc(r[1])}</div><details class="vd"><summary><span class="name"><span class="nm">${esc(r[0])}</span>${badges}</span>${r[4]?`<span class="note">${esc(r[4])}</span>`:""}<span class="tags">${r[3].map(c=>`<span class="tag${c===state.cat?" hit":""}">${CATS[c][0]}</span>`).join("")}</span><span class="more"><span class="o">What they sell &amp; certifications</span><span class="c">Hide details</span></span></summary>${detail(r)}</details><button class="star" data-n="${esc(r[0])}" aria-pressed="${on}" aria-label="${on?"Remove from":"Add to"} shortlist: ${esc(r[0])}">${on?"★":"☆"}</button></li>`;
 }
 function matches(r,q){
   if(!q)return true;
   const b=r[1].toLowerCase();
   if(b===q||(q.length>1&&b.startsWith(q)))return true;
-  return (r[0]+" "+r[4]+" "+r[3].map(c=>CATS[c][0]).join(" ")).toLowerCase().includes(q);
+  return (r[0]+" "+r[4]+" "+(SUM[r[0]]||"")+" "+r[3].map(c=>CATS[c][0]).join(" ")).toLowerCase().includes(q);
 }
 function render(){
   const q=state.q.trim().toLowerCase();
-  const rows=X.filter(r=>(state.cat==="all"||r[3].includes(state.cat))&&(!state.spons||r[2])&&(!state.mine||stars.has(r[0]))&&(state.sg==="all"||sgTier(r)===state.sg)&&matches(r,q));
+  const rows=X.filter(r=>(state.cat==="all"||r[3].includes(state.cat))&&(!state.spons||r[2])&&(!state.mine||stars.has(r[0]))&&(state.sg==="all"||sgTier(r)===state.sg)&&(!state.star2||(STAR[r[0]]&&STAR[r[0]][0]===2))&&matches(r,q));
   document.getElementById("catnote").innerHTML=state.cat!=="all"?`<p class="catnote"><strong>${CATS[state.cat][0]}.</strong> ${CATS[state.cat][1]}</p>`:"";
   document.getElementById("status").textContent=`${rows.length} exhibitor${rows.length===1?"":"s"} · ${stars.size} starred`+(state.mine&&!stars.size?" · tap ☆ on any stand to add it":"");
   const list=document.getElementById("list");
@@ -600,7 +885,7 @@ function render(){
 }
 document.getElementById("list").addEventListener("click",e=>{const b=e.target.closest(".star");if(!b)return;const n=b.dataset.n;stars.has(n)?stars.delete(n):stars.add(n);save();render()});
 document.getElementById("q").addEventListener("input",e=>{state.q=e.target.value;render()});
-for(const id of ["spons","mine"])document.getElementById(id).addEventListener("click",e=>{state[id]=!state[id];e.currentTarget.setAttribute("aria-pressed",state[id]);render()});
+for(const id of ["spons","mine","star2"])document.getElementById(id).addEventListener("click",e=>{state[id]=!state[id];e.currentTarget.setAttribute("aria-pressed",state[id]);render()});
 function setBy(v){state.by=v;document.getElementById("byCat").setAttribute("aria-pressed",v==="cat");document.getElementById("byRow").setAttribute("aria-pressed",v==="row");save();render()}
 document.getElementById("byCat").addEventListener("click",()=>setBy("cat"));
 document.getElementById("byRow").addEventListener("click",()=>setBy("row"));
@@ -608,7 +893,7 @@ const sgCounts={w:0,r:0,n:0};for(const r of X){const t=sgTier(r);if(t!=="x")sgCo
 const sgEl=document.getElementById("sgseg");
 function renderSg(){sgEl.innerHTML=[["all","All"],["w",SGL.w],["r",SGL.r],["n",SGL.n]].map(([k,l])=>`<button data-k="${k}" aria-pressed="${state.sg===k}">${l}${k!=="all"?`<b>${sgCounts[k]}</b>`:""}</button>`).join("")}
 sgEl.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;state.sg=b.dataset.k;renderSg();render()});
-document.getElementById("summary").innerHTML=`<div class="w"><b>${sgCounts.w}</b>vendors with Singapore government work on record</div><div class="r"><b>${sgCounts.r}</b>with a Singapore licence, certification or programme role only</div><div><b>${sgCounts.n}</b>with nothing found in Singapore sources</div>`;
+document.getElementById("summary").innerHTML=`<div class="w"><b>${sgCounts.w}</b>vendors with Singapore government work on record</div><div class="r"><b>${sgCounts.r}</b>with a Singapore licence, certification or programme role only</div><div><b>${sgCounts.n}</b>with nothing found in Singapore sources</div><div class="s"><b>${Object.values(STAR).filter(v=>v[0]===2).length}</b>hold CSA STAR Level 2 for at least one cloud service</div>`;
 renderSg();setBy(state.by);renderChips();
 </script>
 
