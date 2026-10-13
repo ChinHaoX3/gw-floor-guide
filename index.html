@@ -1,0 +1,615 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>GovWare 2026 Floor Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: sticky filter bar; list grouped by category (default) or by floor row letter; one column on phones */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --ink:#141a24; --muted:#5b6574; --line:#dde2ea;
+  --accent:#1f47c9; --accent-soft:#e3e9fb; --star:#c47a00;
+  --t-dia:#4b2fa3; --t-plat:#3d4b5e; --t-gold:#8a6100;
+  --ok:#17784a; --ok-soft:#dff3e8; --rec:#2c5fa8; --rec-soft:#e2ecf8;
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141c; --surface:#171e29; --ink:#e6eaf1; --muted:#97a2b3; --line:#283243;
+  --accent:#7d9cff; --accent-soft:#1f2b4d; --star:#f2b24a;
+  --t-dia:#b9a6ff; --t-plat:#b7c3d4; --t-gold:#e8c060;
+  --ok:#5fd39a; --ok-soft:#163327; --rec:#8db6f2; --rec-soft:#1a2a42; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141c; --surface:#171e29; --ink:#e6eaf1; --muted:#97a2b3; --line:#283243;
+  --accent:#7d9cff; --accent-soft:#1f2b4d; --star:#f2b24a;
+  --t-dia:#b9a6ff; --t-plat:#b7c3d4; --t-gold:#e8c060;
+  --ok:#5fd39a; --ok-soft:#163327; --rec:#8db6f2; --rec-soft:#1a2a42; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:20px 48px}
+header h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,5vw,2.3rem);letter-spacing:-.01em;margin:0;text-wrap:balance}
+header p{margin:.35rem 0 0;color:var(--muted);max-width:62ch}
+.meta{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line);display:grid;gap:10px;margin-top:14px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#q{flex:1 1 200px;min-width:0;font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+#q:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.toggle{font:500 .82rem var(--f-body);padding:8px 11px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap}
+.toggle[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:500 .82rem var(--f-body);padding:8px 11px;border:0;background:var(--surface);color:var(--ink);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin;-webkit-overflow-scrolling:touch;align-items:center}
+.dom{flex:0 0 auto;font:600 .64rem var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-left:6px}
+.chip{flex:0 0 auto;font:500 .8rem var(--f-body);padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:flex;gap:6px;align-items:center}
+.chip b{font:600 .72rem var(--f-mono);color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip[aria-pressed="true"] b{color:#fff;opacity:.85}
+.status{font-size:.82rem;color:var(--muted)}
+.catnote{margin:14px 0 0;padding:10px 12px;background:var(--accent-soft);border-radius:8px;font-size:.88rem}
+.catnote strong{font-family:var(--f-display)}
+.domhead{font:800 1.05rem var(--f-display);margin:26px 0 0;padding-bottom:4px;border-bottom:2px solid var(--ink)}
+.group{margin-top:16px}
+.group h2{font:600 .75rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 6px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.group h2 span{font-family:var(--f-display);font-size:1.15rem;color:var(--ink);letter-spacing:0;text-transform:none}
+.group .desc{font-size:.84rem;color:var(--muted);margin:-2px 0 8px;max-width:68ch}
+ul{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+li{display:grid;grid-template-columns:62px 1fr auto;gap:10px;padding:10px 12px;border-top:1px solid var(--line);align-items:start}
+li:first-child{border-top:0}
+.booth{font:600 .9rem var(--f-mono);font-variant-numeric:tabular-nums;padding:3px 0;text-align:center;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
+.main{min-width:0}
+.name{font-weight:600;display:flex;gap:8px;flex-wrap:wrap;align-items:baseline}
+.tier{font:600 .66rem var(--f-mono);text-transform:uppercase;letter-spacing:.07em}
+.tier.d{color:var(--t-dia)}.tier.pp,.tier.p{color:var(--t-plat)}.tier.g{color:var(--t-gold)}
+.note{color:var(--muted);font-size:.86rem;margin-top:2px}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.tag{font-size:.7rem;padding:2px 7px;border-radius:4px;background:var(--bg);border:1px solid var(--line);color:var(--muted)}
+.tag.hit{background:var(--accent-soft);border-color:transparent;color:var(--accent);font-weight:600}
+.star{background:none;border:0;cursor:pointer;font-size:1.25rem;line-height:1;color:var(--muted);opacity:.5;padding:2px 4px}
+.star[aria-pressed="true"]{color:var(--star);opacity:1}
+.empty{padding:28px 16px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:10px;margin-top:18px}
+.sg{display:inline-flex;align-items:center;gap:5px;font:600 .66rem var(--f-mono);text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+.sg::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.sg.w{color:var(--ok);background:var(--ok-soft)}
+.sg.r{color:var(--rec);background:var(--rec-soft)}
+.sg.n{color:var(--muted);border-color:var(--line)}
+.sgseg button b{font:600 .7rem var(--f-mono);opacity:.7;margin-left:4px}
+details.ev{margin-top:6px;font-size:.82rem}
+details.ev summary{cursor:pointer;color:var(--accent);font-weight:500;list-style:none;display:inline-flex;gap:6px;align-items:center}
+details.ev summary::-webkit-details-marker{display:none}
+details.ev summary::before{content:"▸";font-size:.7rem;transition:transform .15s}
+details.ev[open] summary::before{transform:rotate(90deg)}
+.evb{display:grid;gap:6px;margin-top:6px;padding:8px 10px;background:var(--bg);border-radius:8px;border:1px solid var(--line)}
+.evb h4{margin:0;font:600 .64rem var(--f-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.evb ul{background:none;border:0;border-radius:0;display:grid;gap:3px}
+.evb li{display:block;padding:0 0 0 12px;border:0;position:relative;line-height:1.4}
+.evb li::before{content:"–";position:absolute;left:0;color:var(--muted)}
+.evb a{color:var(--accent);font-size:.72rem;margin-left:4px;text-decoration:none;white-space:nowrap}
+.evb a:hover{text-decoration:underline}
+.summary{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.summary div{flex:1 1 150px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+.summary b{display:block;font:800 1.4rem var(--f-display);color:var(--ink);font-variant-numeric:tabular-nums}
+.summary .w b{color:var(--ok)}.summary .r b{color:var(--rec)}
+@media (prefers-reduced-motion:reduce){details.ev summary::before{transition:none}}
+footer{margin-top:28px;font-size:.82rem;color:var(--muted);max-width:68ch}
+footer a{color:var(--accent)}
+@media (max-width:420px){li{grid-template-columns:54px 1fr auto;gap:8px;padding:10px}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="meta">13–15 Oct 2026 · Sands Expo, Singapore</div>
+  <h1>GovWare 2026 Floor Guide</h1>
+  <p>All 210 listed exhibitors, sorted into 18 security categories, with each vendor's Singapore public-sector track record and certifications. Filter by category and track record, star the stands you want, then group your shortlist by booth row to plan your walk.</p>
+  <div class="summary" id="summary"></div>
+</header>
+
+<div class="bar">
+  <div class="row">
+    <input id="q" type="search" placeholder="Search vendor, product or booth (e.g. Wiz, PAM, R01)" aria-label="Search exhibitors">
+  </div>
+  <div class="row">
+    <div class="seg" role="group" aria-label="Group list by">
+      <button id="byCat" aria-pressed="true">By category</button>
+      <button id="byRow" aria-pressed="false">By booth row</button>
+    </div>
+    <button class="toggle" id="spons" aria-pressed="false">Sponsors only</button>
+    <button class="toggle" id="mine" aria-pressed="false">★ Shortlist</button>
+  </div>
+  <div class="row">
+    <div class="seg sgseg" id="sgseg" role="group" aria-label="Singapore track record"></div>
+  </div>
+  <div class="chips" id="chips" role="toolbar" aria-label="Categories"></div>
+  <div class="status" id="status"></div>
+</div>
+
+<div id="catnote"></div>
+<div id="list"></div>
+
+<footer>
+  <p>Exhibitor names and booth numbers come from the official <a href="https://www.govware.sg/visit/govware-2026-sponsors-exhibitors" target="_blank" rel="noopener">GovWare 2026 Sponsors &amp; Exhibitors page</a> as of 12 Oct 2026. The organiser updates the list periodically, so confirm booths onsite.</p>
+  <p>The categories are my own grouping. Exhibitors' self-selected tags on the official site are too broad to plan with (many small firms tick 15+ boxes), so each vendor is placed by what it actually sells: its GovWare profile for smaller and pavilion exhibitors, and its known product lines for established vendors. Platform vendors appear in several categories.</p>
+  <p><strong>How the Singapore track record was checked (12 Oct 2026).</strong> <em>Gov work</em> means a public record of a contract, deployment or formal partnership with a Singapore agency: a GeBIZ award to the company, its product named in an agency's tender bought through a reseller, a GovTech panel seat, or a signed agreement with CSA or another agency. <em>SG-recognised</em> means a Singapore credential without a confirmed contract: a CSA licence for penetration testing or managed SOC, Singapore Common Criteria (SCCS) or IMDA MTCS certification, IMDA accreditation, or a CSA programme role such as SG Cyber Safe Advocate, the CyberSG startup zone or a GovTech STACKx speaking slot. <em>None found</em> means nothing turned up in those sources. That does not mean no work: global vendors usually sell to agencies through integrators, and tender descriptions rarely name the product.</p>
+  <p>Sources checked: CSA's <a href="https://www.csro.gov.sg/resources/licensed-service-providers/" target="_blank" rel="noopener">licensed service providers list</a> (9 Oct 2026), the <a href="https://csa.gov.sg/our-programmes/certification-and-labelling-schemes/singapore-common-criteria-scheme/product-list" target="_blank" rel="noopener">SCCS product list</a>, IMDA's <a href="https://www.imda.gov.sg/regulations-and-licensing-listing/ict-standards-and-quality-of-service/it-standards-and-frameworks/compliance-and-certification" target="_blank" rel="noopener">MTCS register</a>, CSA's <a href="https://www.csa.gov.sg/our-programmes/support-for-enterprises/sg-cyber-safe-programme/sg-cybersafe-partnership/advocates/" target="_blank" rel="noopener">SG Cyber Safe Advocates</a>, GeBIZ award data via <a href="https://www.sgpbusiness.com/government/procurement/tender-number/GVT000ETT25000001" target="_blank" rel="noopener">SGPBusiness</a> (a third-party mirror; a S$1 award is a panel seat), agency and vendor announcements. International certifications list FedRAMP (US federal cloud authorisation) where confirmed for sponsors and CNAPP, identity and other key vendors; other exhibitors were not checked for it. ISO 27001 and SOC 2 are near-universal for these vendors, so they are left out.</p>
+</footer>
+</div>
+
+<script>
+const DOMAINS=[
+ ["Cloud & Applications",["cnapp","appsec","ai"]],
+ ["Identity & Access",["id","sase"]],
+ ["Detect & Respond",["edr","secops","ti"]],
+ ["Exposure & Risk",["exposure","grc"]],
+ ["Data & People",["data","email","pqc"]],
+ ["Critical Infrastructure",["ot"]],
+ ["Ecosystem",["svc","infra","train","org"]]
+];
+const CATS={
+ cnapp:["CNAPP & Cloud","Cloud posture (CSPM), workload and container protection (CWPP), Kubernetes and cloud entitlements."],
+ appsec:["AppSec, API & Web","Code, open-source and supply-chain security, mobile app security, API protection, WAF, DDoS and bot defence."],
+ ai:["AI Security","Securing AI apps, models and agents, plus governed enterprise AI platforms."],
+ id:["Identity & Digital Trust","IAM, PAM, identity threat detection, AD resilience, MFA/FIDO, PKI, identity verification and e-signing."],
+ sase:["SASE, Zero Trust & Network","SSE/SASE, ZTNA, secure browsers, firewalls and secure remote access."],
+ edr:["Endpoint, XDR & MDR","Endpoint protection, extended detection and response, managed detection."],
+ secops:["SIEM, SOC & NDR","SIEM, SOAR, security data pipelines, log platforms and network detection."],
+ ti:["Threat Intel & DFIR","Threat intelligence, brand and leak monitoring, forensics and incident response."],
+ exposure:["Exposure & Validation","Vulnerability and attack-surface management, breach-and-attack simulation, automated and AI pentesting."],
+ grc:["GRC & Third-party Risk","Compliance automation, control monitoring, security ratings, certification and assurance."],
+ data:["Data Security & Resilience","DLP, encryption and key management, file sanitisation, data erasure, backup and cyber recovery."],
+ email:["Email & Human Risk","Email security, phishing defence and security awareness."],
+ pqc:["Quantum & Cryptography","Post-quantum migration, QKD, HSMs, crypto hardware and quantum RNG."],
+ ot:["OT, IoT & Cross-domain","Industrial, IoT, mobile, automotive and embedded security, data diodes and non-IP access."],
+ svc:["MSSP, SI & Telco","Managed security providers, integrators, distributors, consultancies and telcos."],
+ infra:["Infra & IT Platforms","Compute, storage, networking and IT platforms with security features."],
+ train:["Training & Cyber Ranges","Hands-on training, certification bodies, cyber ranges and talent programmes."],
+ org:["Academia, Agencies & Pavilions","Polytechnics and universities, agencies, associations and country pavilions."]
+};
+// [name, booth, tier(d/pp/p/g/""), cats, note]
+const X=[
+["Ensign InfoSecurity","L02","d",["svc","secops","ti"],"Large regional MSSP and MDR provider"],
+["Singtel","M02","d",["svc","sase"],"Telco managed security"],
+["ST Engineering","J02","d",["svc","ot","pqc"],"Cyber services, OT and high-assurance encryption"],
+["TrendAI","L10","d",["edr","cnapp","exposure","ai"],"Trend Micro's rebrand; Vision One platform incl. cloud security"],
+["ABP Securite","H18","pp",["svc"],"Singapore distributor of security and network-performance tools, with integration and managed services"],
+["Check Point Software Technologies","G12","pp",["sase","cnapp","email","ai"],"Firewalls, CloudGuard, email and AI security"],
+["Cisco","L18","pp",["sase","secops","id","ai"],"Network security, Splunk SIEM, Duo identity"],
+["CrowdStrike","G02","pp",["edr","cnapp","id","secops"],"Falcon: XDR, cloud security, identity protection, Next-Gen SIEM"],
+["Fortinet","J18","pp",["sase","ot","cnapp","secops"],"FortiGate/SASE, OT security, FortiCNAPP"],
+["Google Cloud Security","H10","pp",["secops","ti","cnapp","ai"],"Google SecOps, Mandiant threat intel, Security Command Center"],
+["Huawei International","M18","pp",["infra","sase"],"Network and data-centre infrastructure, firewalls"],
+["Lenovo","P02","pp",["infra"],"Devices and data-centre hardware"],
+["M.Tech Products","M10","pp",["svc"],"Security distributor and integrator"],
+["NCS","H02","pp",["svc"],"Singtel group IT and cyber services"],
+["Alcatel-Lucent Enterprise","F20","p",["infra","sase"],"Enterprise networking"],
+["Broadcom","M25","p",["data","sase","email","edr"],"Symantec DLP, web, email and endpoint"],
+["Cohesity","J25","p",["data"],"Backup, data security and cyber recovery"],
+["HPE","P19","p",["infra","sase"],"Aruba/Juniper networking, SASE, infrastructure"],
+["Menlo Security","F07","p",["sase"],"Secure enterprise browser and browser isolation"],
+["Palo Alto Networks","F13","p",["sase","cnapp","secops","ai"],"Strata/Prisma SASE, Cortex Cloud, Cortex XSIAM, AI security"],
+["Samsung","K25","p",["infra","ot"],"Knox mobile device security"],
+["SentinelOne","H25","p",["edr","cnapp","secops","ai"],"Singularity XDR, cloud security, AI SIEM"],
+["ViewQwest","L25","p",["svc","sase"],"Singapore ISP with managed SASE and security"],
+["Abnormal AI","F19","g",["email"],"Behavioural AI email security"],
+["Exabeam","Q09","g",["secops"],"SIEM and UEBA"],
+["ExtraHop","E26","g",["secops"],"Network detection and response"],
+["Horizon3","P25","g",["exposure"],"Autonomous pentesting (NodeZero)"],
+["KnowBe4","E13","g",["email"],"Security awareness and human risk"],
+["Netskope","E01","g",["sase","data"],"SSE/SASE with DLP"],
+["Proofpoint","Q13","g",["email","data"],"Email security, DLP and human risk"],
+["Rubrik","E14","g",["data","id"],"Backup, cyber recovery and identity resilience"],
+["Thales","E02","g",["data","id","pqc"],"Encryption, HSMs, key management and access management"],
+["Veeam Software","E07","g",["data"],"Backup and recovery"],
+["Wiz","R01","g",["cnapp","ai"],"CNAPP leader: posture, workload, code-to-cloud, AI-SPM"],
+["Zscaler","E08","g",["sase","data"],"Zero Trust Exchange, SSE and DLP"],
+["ACA Pacific","R13","",["svc"],"Security distributor"],
+["AD Consulting","Q25","",["svc"],"Italian integrator: SOC, IR, digital identity, pentesting (Italy Pavilion)"],
+["Agile Momentum","M47","",["data"],"AgileMark on-screen watermarking to deter photographing sensitive screens"],
+["AhnLab","B01","",["edr","ot"],"Korean endpoint, EDR and OT security"],
+["Aikido Security","A15","",["appsec","cnapp"],"Code-to-cloud AppSec incl. cloud posture"],
+["AISTORM","H45","",["svc","edr"],"AsiaInfo brand: security technology, connectivity and consulting"],
+["Amazon Web Services","T13","",["cnapp","infra"],"AWS native security services"],
+["Ansteroid","F01","",["appsec","ot"],"Android app runtime tracing and side-channel detection (CyberSG startup)"],
+["Arcfra","N37","",["infra"],"Hyperconverged infrastructure"],
+["ASEAN CXO Association","A34","",["org"],"Industry association"],
+["Association of Information Security Professionals (AiSP)","A34","",["org"],"Singapore professional body"],
+["Assurity Trusted Solutions","P46","",["grc","exposure"],"GovTech subsidiary: security testing, certification and assurance"],
+["Athena Dynamics","J31","",["svc"],"Security distributor and integrator"],
+["Axiler","J37","",["appsec","ai","cnapp"],"AI-native AppSec across code, runtime, APIs, agents and cloud"],
+["BeyondTrust","R02","",["id"],"Privileged access management and identity security"],
+["Bitdefender","D42","",["edr"],"Endpoint protection, XDR and MDR"],
+["Bitsight","S20","",["grc","exposure"],"Security ratings and third-party risk"],
+["Blancco","K46","",["data"],"Certified data erasure"],
+["Blindspot Technologies","R07","",["appsec"],"DDoS, bot and API defence for banks and telcos (Czech Pavilion)"],
+["BNF SG","M37","",["ot","ai","svc"],"Critical-infrastructure protection, AI assurance and sovereign tech for government"],
+["Bynario","Q25","",["exposure","appsec"],"AI exploitability validation of scanner findings, code and supply chain (Italy Pavilion)"],
+["Cato Networks","R20","",["sase"],"Single-vendor SASE"],
+["Cellebrite","C33","",["ti"],"Digital forensics and investigations"],
+["Censys","D36","",["exposure","ti"],"Internet-wide attack surface and threat hunting"],
+["CHT Security","K47","",["svc","exposure"],"Taiwan Chunghwa Telecom security arm"],
+["CITIC Telecom CPC","A07","",["svc"],"Telco managed services"],
+["Cloudflare","H31","",["sase","appsec","ai"],"SASE, WAF/DDoS, AI gateway"],
+["Cloudsine","P38","",["ai","appsec"],"Singapore GenAI firewall and web security"],
+["Crayon","K38","",["svc"],"Software and cloud reseller"],
+["Cribl","S25","",["secops"],"Security and observability data pipelines"],
+["Criminal IP","K37","",["ti","exposure"],"Threat intel and attack-surface search (AI Spera)"],
+["CrimsonLogic","T19","",["svc"],"Singapore e-government services"],
+["Cyber Test Systems","E30","",["train","exposure"],"Hybrid cyber ranges, traffic generators, pentest platforms (French Pavilion)"],
+["Cyberhaven","A17","",["data"],"Data lineage-based DLP and insider risk"],
+["CyberSG","F01","",["org"],"CSA's cyber talent and innovation hub; startup cluster at F01"],
+["CyberSG TIG Collaboration Centre","A34","",["org"],"CSA-backed industry collaboration centre"],
+["Cyble","D07","",["ti"],"Threat intelligence and dark-web monitoring"],
+["Cymulate","G37","",["exposure"],"Breach and attack simulation, exposure validation"],
+["Czech Pavilion","R07","",["org"],"Country pavilion"],
+["DataBahn","A01","",["secops"],"AI-driven security data pipeline"],
+["Datadog","E42","",["secops","cnapp"],"Cloud SIEM and cloud security posture"],
+["Delinea","D19","",["id"],"Privileged access management"],
+["digiDations","D02","",["exposure"],"AI-driven security control validation against current attacker activity"],
+["DNV Business Assurance","N46","",["grc","ot"],"Certification and OT cyber assurance"],
+["DRIVESEC","R07","",["ot","grc"],"IoT and automotive security testing and AI compliance tools"],
+["DT Asia","M31","",["svc","pqc"],"Distributor focused on HSM, PKI and encryption"],
+["ECQ (e-Cqurity)","S26","",["svc","exposure"],"Offensive testing and proactive defence across IT and OT"],
+["Elastic","R19","",["secops"],"Elastic Security SIEM and XDR"],
+["EmbedIT","R07","",["id"],"Digital banking platform with onboarding, fraud and compliance tools (Czech Pavilion)"],
+["EXEO Global","B22","",["svc"],"Japanese ICT systems integrator"],
+["Feitian Technologies","C27","",["id"],"FIDO keys and authenticators"],
+["Filigran","E30","",["ti"],"OpenCTI threat intel platform"],
+["Finland Pavilion","H20","",["org"],"Country pavilion"],
+["Fortanix","N25","",["data","pqc"],"Data security, key management, PQC readiness"],
+["French Pavilion","E30","",["org"],"Country pavilion"],
+["Gatewatcher","E30","",["secops"],"French NDR"],
+["Gevme","B27","",["org"],"Event platform (runs GovWare registration); not a security vendor"],
+["Gigamon","S19","",["secops"],"Network visibility and deep observability"],
+["GoodAccess","R07","",["sase"],"Czech ZTNA / business VPN"],
+["GreyCortex","R07","",["secops","ot"],"Czech NDR incl. OT networks"],
+["Hack The Box","F36","",["train"],"Hands-on cyber training and labs"],
+["HackedList.io","R07","",["ti"],"Credential, ransomware, spoofed-domain and brand monitoring (Czech Pavilion)"],
+["Hackuity","E30","",["exposure"],"Risk-based vulnerability management"],
+["Hammerspace","B02","",["infra"],"Global data platform / storage"],
+["Hoxhunt","H20","",["email"],"Phishing training and human risk"],
+["Huntress","—","",["edr"],"Managed EDR and ITDR for SMB; booth not listed"],
+["identi.ly","A01","",["data","id"],"Identity-gated document protection, encryption and e-signing in Microsoft 365"],
+["IdentityPlane","A01","",["id","exposure"],"GoAM cloud IAM and PurpleSwarm AI pentesting"],
+["IGLOO Corporation","J47","",["secops","svc"],"Korean SIEM and managed security"],
+["Indonesia ICT Business Association","A34","",["org"],"Industry association"],
+["Infocomm Media Development Authority","N25","",["org"],"Singapore agency (IMDA zone)"],
+["Information Security Officers Group","A34","",["org"],"Community group"],
+["Insider Security","F01","",["data","secops"],"Cloud data security, database activity monitoring, compliance log review"],
+["Inspire-Tech","J46","",["svc"],"Singapore security distributor and integrator"],
+["ITE College East","B45","",["org"],"IHL Pavilion"],
+["ITE College West","B45","",["org"],"IHL Pavilion"],
+["Intercede","M38","",["id"],"Credential and PKI lifecycle management"],
+["IPS","Q25","",["ti"],"Cyber intelligence platforms for law enforcement and defence (Italy Pavilion)"],
+["ISACA Singapore Chapter","A34","",["train","org"],"Professional body and certifications"],
+["ISC2","T24","",["train"],"Certification body"],
+["Italy Pavilion","Q25","",["org"],"Country pavilion"],
+["ITSEC Asia","J38","",["svc"],"Regional security services and MSSP"],
+["Janus Cyber","A01","",["exposure","ot"],"ITRI spin-off: AI-driven weakness discovery and risk monitoring"],
+["Keysight Technologies","S07","",["exposure","secops"],"Security testing and network visibility"],
+["LogEase","D29","",["secops"],"Log management and SIEM"],
+["LRQA","A19","",["grc","svc"],"Assurance, certification and cyber services"],
+["ManageEngine","T01","",["id","secops","infra"],"IT management incl. AD/IAM, PAM and Log360 SIEM"],
+["Manticore","F01","",["exposure","appsec"],"ShieldProbe AI pentesting with virtual patching and fix PRs"],
+["Mattermost","E36","",["infra"],"Secure self-hosted collaboration"],
+["Mimecast","R31","",["email"],"Email security and human risk"],
+["Momentum Z","F01","",["svc","grc"],"VAPT, CISO-as-a-Service and risk assessments"],
+["MyQ","R07","",["infra"],"Secure print management"],
+["Nanyang Polytechnic","B45","",["org"],"IHL Pavilion"],
+["NCL, National University of Singapore","B45","",["org"],"National Cybersecurity R&D Lab"],
+["NiCE, Nanyang Technological University","B45","",["org"],"National Integrated Centre for Evaluation"],
+["Netcraft","B29","",["ti"],"Phishing and brand-abuse takedown"],
+["Netrust","M32","",["id","pqc"],"Singapore certificate authority and PKI"],
+["NetWitness","D25","",["secops"],"SIEM, NDR and forensics"],
+["Nexora Security","A01","",["grc"],"Continuous compliance-control testing feeding your GRC tool"],
+["Nextcloud","D35","",["infra"],"Self-hosted collaboration and file sharing"],
+["NinjaOne","A13","",["infra"],"Endpoint management and patching"],
+["Noma Security","L37","",["ai"],"AI and agent security, AI-SPM"],
+["NSFOCUS","D08","",["sase","appsec"],"DDoS, WAF and network security"],
+["Nutanix","E20","",["infra"],"Hybrid cloud infrastructure"],
+["OneT Solutions","A02","",["svc"],"Singapore IT solutions and consulting"],
+["OT-ISAC","A34","",["org","ot"],"OT information sharing centre"],
+["OPSWAT","S13","",["ot","data"],"Critical-infrastructure protection, file sanitisation, diodes"],
+["Orange Business","E30","",["svc"],"Orange Cyberdefense managed security"],
+["Otenti","E30","",["id"],"Cryptographic caller and SMS identity verification (French Pavilion)"],
+["OverArX","F01","",["ot","exposure"],"ThreatMirror attack-path mapping for critical infrastructure (SUTD spin-off)"],
+["Pacific Tech","S01","",["svc"],"Singapore security integrator and MSSP"],
+["Parasoft","T23","",["appsec"],"Software testing and static analysis"],
+["Pentera","R25","",["exposure"],"Automated security validation"],
+["Picus Security","P26","",["exposure"],"Breach and attack simulation"],
+["Ping Identity","F42","",["id"],"Workforce and customer IAM"],
+["Plainbit","B28","",["ti","svc"],"Korean forensics, incident response and eDiscovery"],
+["PQ Station","F01","",["pqc"],"NTU spin-off: post-quantum assessment and migration"],
+["Quokka","B36","",["appsec"],"Mobile app security and privacy"],
+["Random Power","Q25","",["pqc"],"Quantum random number generators (Italy Pavilion)"],
+["Red Alpha Cybersecurity","K31","",["train"],"Trains and places cyber and AI talent"],
+["Red Hat","S35","",["infra","cnapp"],"OpenShift and Advanced Cluster Security for Kubernetes"],
+["Republic Polytechnic","B45","",["org"],"IHL Pavilion"],
+["Root-Me PRO","E30","",["train"],"Hands-on cyber training"],
+["Safeware","C30","",["data"],"Glasswall file sanitisation (CDR), cloud and air-gapped"],
+["SANS Institute","E19","",["train"],"Training and certification"],
+["Sansec","B30","",["pqc"],"Chinese crypto chips, HSMs, key management and PQC"],
+["Sapience Consulting","C35","",["train"],"Training provider"],
+["Sasa Software","C26","",["data","ot"],"Content disarm and reconstruction"],
+["SC Cyber (softScheck APAC)","C14","",["svc","ot"],"Security testing incl. IoT"],
+["Secure-IC","E30","",["pqc","ot"],"Embedded and chip security, PQC IP"],
+["SecureAge Technology","P47","",["data","edr"],"Data-centric encryption and endpoint"],
+["SecureFlag","H46","",["appsec","train"],"Hands-on secure coding training"],
+["SecurityScorecard","P31","",["grc","exposure"],"Security ratings and supply-chain risk"],
+["Sekoia.io","E30","",["secops","ti"],"French SOC platform with built-in CTI"],
+["Semperis","F35","",["id"],"Active Directory / Entra ID resilience and ITDR"],
+["SensorFleet","H20","",["ot"],"Finnish network monitoring for OT"],
+["SensorFu","H20","",["ot","exposure"],"Network isolation and segmentation testing"],
+["Sentrynet","Q25","",["edr","ot"],"AI threat detection protecting executives, mobile users and comms (Italy Pavilion)"],
+["SGTech","N38","",["org"],"Tech industry association"],
+["Silence Laboratories","A01","",["data"],"Cryptographic computing for encrypted analytics on sensitive data"],
+["Silent Push","N25","",["ti"],"Preemptive threat intel on attacker infrastructure"],
+["Silverfort","E35","",["id"],"Identity protection, MFA everywhere, ITDR"],
+["Singapore Polytechnic","B45","",["org"],"IHL Pavilion"],
+["SUTD (iTrust)","B45","",["org","ot"],"iTrust OT research centre"],
+["SIOS Technology","T26","",["infra"],"High-availability clustering"],
+["Snyk","A20","",["appsec","ai"],"Developer-first code, open-source and container security"],
+["Sonatype","E29","",["appsec"],"Software supply-chain and open-source security"],
+["SonicWall","B08","",["sase"],"Firewalls and secure access"],
+["Sovereign AI","A22","",["ai"],"Armor's security-governed enterprise AI platform"],
+["SpeQtral","A01","",["pqc"],"Singapore quantum key distribution (satellite QKD)"],
+["Stellar Cyber","H37","",["secops"],"Open XDR / AI SOC platform"],
+["Strongkeep","F01","",["svc"],"Bundled essential security services for firms without a CISO"],
+["SUSE","D20","",["infra","cnapp"],"Linux and NeuVector container security"],
+["Sygnia","N31","",["ti"],"Incident response and MXDR"],
+["Temasek Polytechnic","B45","",["org"],"IHL Pavilion"],
+["Tenable","C02","",["exposure","cnapp","ot"],"Exposure management, Tenable Cloud Security, OT"],
+["Terrabit Networks","R35","",["svc"],"Singapore network and security integrator"],
+["The Thought Projects","B34","",["pqc"],"QKD security testing and protection"],
+["ThreatBook","D30","",["ti","secops"],"Threat intelligence and NDR"],
+["Toshiba Asia Pacific","B23","",["pqc"],"Quantum key distribution"],
+["Trellix","U01","",["edr","secops","email"],"XDR, endpoint and email security"],
+["TXOne Networks","T07","",["ot"],"OT endpoint and network protection"],
+["UpGuard","G35","",["grc","exposure"],"Attack surface and third-party risk"],
+["Upwind Security","A14","",["cnapp"],"Runtime-first CNAPP"],
+["Veridico","A01","",["id"],"Identity verification, digital signing and blockchain document verification"],
+["VeriGrey","A01","",["ai"],"Pre-deployment testing and runtime monitoring of AI agents"],
+["Vicarius","A01","",["exposure"],"Vulnerability remediation (vRx)"],
+["VulnCheck","B25","",["exposure","ti"],"Exploit and vulnerability intelligence"],
+["WatchGuard Technologies","R14","",["sase","edr"],"Firewalls, endpoint and MFA"],
+["Waterfall Security Solutions","C29","",["ot"],"Unidirectional gateways for OT"],
+["WhizHack","N25","",["ot","train"],"OT security and cyber ranges"],
+["Yalla Security","Q25","",["svc","edr","exposure"],"Orion exposure assessment, Atlas MDR with 24/7 SOC, pentesting (Italy Pavilion)"],
+["Zavior","A01","",["grc"],"AI compliance for Cyber Essentials, ISO 27001/42001 and PDPA"],
+["Zeroport","A08","",["ot","sase"],"Non-IP secure remote access for critical infrastructure"],
+["Zoho Corporation","L38","",["infra"],"Business software (ManageEngine parent)"]
+];
+
+const SP="https://www.sgpbusiness.com/company/";
+const SRC={
+ csro:"https://www.csro.gov.sg/resources/licensed-service-providers/",
+ sccs:"https://csa.gov.sg/our-programmes/certification-and-labelling-schemes/singapore-common-criteria-scheme/product-list",
+ sccsEval:"https://csa.gov.sg/our-programmes/certification-and-labelling-schemes/singapore-common-criteria-scheme/product-list-in-evaluation",
+ mtcs:"https://www.imda.gov.sg/regulations-and-licensing-listing/ict-standards-and-quality-of-service/it-standards-and-frameworks/compliance-and-certification",
+ sgcs:"https://www.csa.gov.sg/our-programmes/support-for-enterprises/sg-cyber-safe-programme/sg-cybersafe-partnership/advocates/",
+ csas:"https://www.sgpbusiness.com/government/procurement/tender-number/GVT000ETT25000001",
+ stx26:"https://www.developer.tech.gov.sg/communities/events/conferences/stackx-cybersecurity-2026/speakers",
+ stx25:"https://www.developer.tech.gov.sg/communities/events/conferences/stackx-cybersecurity-2025/speakers",
+ gcc:"https://v2.developer.tech.gov.sg/products/categories/infrastructure-and-hosting/gcc/about-gcc-2-0",
+ gw:"https://www.govware.sg/visit/govware-2026-sponsors-exhibitors",
+ csa2015:"https://www.csa.gov.sg/news-events/press-releases/csa-inks-partnerships-with-local-and-foreign-industry-players/",
+ panmoc:"https://www.prnewswire.com/in/news-releases/palo-alto-networks-teams-up-with-cyber-security-agency-of-singapore-to-strengthen-the-nations-cyber-defense-596596941.html",
+ cisco18:"https://www.csa.gov.sg/news-events/press-releases/csa-and-cisco-systems-sign-memorandum-of-collaboration/",
+ cisco24:"https://news-blogs.cisco.com/apjc/2024/10/18/cisco-and-csa-collaborate-to-bolster-cyber-defense-for-singapore/",
+ googlecsa:"https://itbrief.asia/story/google-csa-join-forces-to-boost-singapore-cyber-resilience",
+ googlegdc:"https://govinsider.asia/intl-en/article/singapore-government-first-in-asia-to-deploy-agentic-ai-on-googles-air-gapped-cloud",
+ wizgoog:"https://www.clearygottlieb.com/news-and-insights/news-listing/google-completes-32-billion-acquisition-of-wiz",
+ fortq:"https://www.fortinet.com/corporate/about-us/newsroom/press-releases/2022/fortinet-support-singapore-quest-quantum-safe-future",
+ huaweicsa:"https://en.prnasia.com/releases/apac/huawei-partners-with-csa-to-fortify-cyberspace-and-promote-cybersecurity-awareness-among-local-enterprises-335508.shtml",
+ thalesica:"https://asiapacificdefencereporter.com/thales-bolsters-homeland-security-in-singapore/",
+ blancco:"https://blancco.com/government-bulk-tender-for-software-based-data-destruction-awarded-to-blancco-technology-group/",
+ hackuity:"https://www.acnnewswire.com/press-release/english/86850/",
+ fortanix:"https://www.businesswire.com/news/home/20240506977426/en",
+ semperis:"https://cybersecurityasia.net/semperis-secures-imda-accreditation/",
+ netrustca:"https://www.netrust.net/made-in-sg",
+ nqsn:"https://asia.toshiba.com/press-release/english/toshiba-and-speqtral-forge-deeper-partnership-amidst-landmark-national-quantum-safe-network-plus-nqsn-project/",
+ assurity:"https://jobs.workable.com/companies/aRjL9owVRJWB62dF2Et766",
+ crest:"https://marketplace.crest.org/suppliers/",
+ cloudsinetig:"https://www.malaymail.com/news/money/mediaoutreach/2025/04/23/singapore-cybersecurity-companies-pioneer-ai-and-quantum-computing-solutions-to-combat-global-threats/376882",
+ silverfort:"https://www.imda.gov.sg/resources/innovative-tech-companies-directory/silverfort",
+ lenovo:"https://www.digitalforlife.gov.sg/about/our-partners/lenovo",
+ ensSys:SP+"Ensign-Infosecurity-Systems-Pte-Ltd/government-procurement",
+ ensST:SP+"Ensign-Infosecurity-Smarttech-Pte-Ltd/government-procurement",
+ stes:SP+"St-Engineering-Info-Security-Pte-Ltd/government-procurement",
+ ncs:SP+"Ncs-Pte-Ltd/government-procurement",
+ singtel:SP+"Singapore-Telecommunications-Limited/government-procurement",
+ crimson:SP+"Crimsonlogic-Pte-Ltd/government-procurement",
+ netrust:SP+"Netrust-Pte-Ltd/government-procurement",
+ terrabit:SP+"Terrabit-Networks-Pte-Ltd/government-procurement",
+ athena:SP+"Athena-Dynamics-Pte-Ltd/government-procurement",
+ itsec:SP+"Itsec-Services-Asia-Pte-Ltd/government-procurement",
+ cloudsine:SP+"Cloudsine-Pte-Ltd/government-procurement",
+ inspire:SP+"Inspire-Tech-Pte-Ltd/government-procurement",
+ dtasia:SP+"Dt-Asia-Pte-Ltd/government-procurement",
+ huawei:SP+"Huawei-International-Pte-Ltd/government-procurement",
+ ntt:SP+"Ntt-Singapore-Pte-Ltd/government-procurement",
+ frWiz:"https://wiz.io/blog/wiz-achieves-fedramp-high-authorization",
+ frUpwind:"https://www.businesswire.com/news/home/20251106512925/en",
+ frDatadog:"https://www.datadoghq.com/about/latest-news/press-releases/datadog-for-government-achieves-fedramp-high-in-process-status-to-support-mission-critical-federal-workloads/",
+ frTenable:"https://www.tenable.com/press-releases/tenable-achieves-fedramp-authorization-for-tenable-one-and-tenable-cloud-security",
+ frBT:"https://beyondtrust.com/press/fedramp-authorization-sra",
+ frDelinea:"https://delinea.com/news/delinea-achieves-fedramp-high-authorization-for-secret-server",
+ frPing:"https://press.pingidentity.com/2023-10-31-Ping-Identity-Achieves-FedRAMP-High-Certification",
+ frCS:"https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-achieves-fedramp-authorization-new-modules-secure",
+ frS1:"https://www.sentinelone.com/press/sentinelone-achieves-fedramp-high-authorization-for-singularity-platform-and-singularity-data-lake/",
+ frNsk:"https://www.netskope.com/press-releases/netskope-achieves-fedramp-high-authorization",
+ frZs:"https://www.zscaler.com/press/zscaler-achieves-zero-trust-security-service-fedramp-high-authorization",
+ frPanw:"https://www.paloaltonetworks.com/blog/cloud-security/cortex-cloud-stands-alone-to-secure-mission-critical-workloads-with-fedramp-high-and-moderate/",
+ frCP:"https://www.checkpoint.com/press-releases/check-point-software-achieves-fedramp-authorization-empowering-u-s-federal-agencies-with-ai-powered-cyber-security/",
+ grFtnt:"https://www.nasdaq.com/articles/fortinet-earns-govramp-authorization-ai-powered-security-and-support-services",
+ frTrend:"https://newsroom.trendmicro.com/2024-12-05-FedRAMP-R-Authorization-Cements-Trend-Micro-as-Zero-Trust-Compliance-Leader",
+ frCF:"https://thequantuminsider.com/2026/08/10/cloudflare-quantum-safe-government-security-fedramp-high/",
+ frRubrik:"https://www.rubrik.com/company/newsroom/press-releases/24/rubrik-security-cloud-government-achieves-fedramp-authorization",
+ frCohesity:"https://www.cohesity.com/newsroom/press/cohesity-achieves-fedramp-moderate-authorization/",
+ frSnyk:"https://snyk.io/news/snyk-achieves-fedramp-moderate-authorization/",
+ frPP:"https://www.hstoday.us/industry/industry-news/proofpoint-awarded-fedramp-certification-to-help-protect-government-agencies-from-email-attacks/",
+ frAbn:"https://abnormal.ai/newsroom/press-releases/announcing-fedramp-moderate-authorization",
+ frKB4:"https://www.knowbe4.com/press/knowbe4-achieves-fedramp-authorization-from-u.s.-federal-government",
+ frElastic:"https://www.elastic.co/blog/elastic-cloud-hosted-fedramp-high-authorization",
+ frMenlo:"https://www.menlosecurity.com/press-releases/menlo-security-cloud-security-platform-receives-fedramp-authorization"
+};
+// Evidence per vendor: g = Singapore gov work, c = Singapore credentials, i = international. Each item: [text, sourceKey]
+const LIC_SP=["CSA licence: managed SOC + penetration testing","csro"];
+const CYBERSG=["Exhibiting in CSA's CyberSG startup zone (F01)","gw"];
+const EV={
+"Ensign InfoSecurity":{g:[["GovTech Government Infrastructure Cybersecurity Services, S$29.6M (2018)","ensSys"],["MINDEF malware sandbox S$3.7M (2020); IMDA CrowdStrike threat-intel feed S$713k (2025); 60+ GeBIZ awards across Ensign entities","ensST"],["GovTech Cybersecurity & Audit Services panel (Oct 2025)","csas"]],c:[LIC_SP,["CSA SG Cyber Safe Advocate","sgcs"]]},
+"Singtel":{g:[["121 GeBIZ awards, S$130M (2015–26)","singtel"],["GovTech DDoS mitigation panel for agencies (Jan 2025)","singtel"],["CSA MoU (Oct 2015)","csa2015"]],c:[LIC_SP,["CSA SG Cyber Safe Advocate","sgcs"]]},
+"ST Engineering":{g:[["28 GeBIZ awards, S$57M (Info-Security, 2015–26)","stes"],["MPA Maritime Cyber Assurance & Operations Centre managed security, S$1.39M (Nov 2025)","stes"],["GovTech Cybersecurity & Audit Services panel (Oct 2025)","csas"]],c:[["Singapore Common Criteria: NetCrypt EAL2 (Oct 2026), DiskCrypt EAL2 (Jul 2025)","sccs"],["CyberTransporter and UCS-1000 isolation unit in SCCS evaluation","sccsEval"],LIC_SP,["CSA SG Cyber Safe Advocate (Mission Software & Services)","sgcs"]]},
+"TrendAI":{g:[["CPIB bought a Trend Micro Deep Discovery Analyzer via NTT (Mar 2026)","ntt"]],c:[["CSA licence: managed SOC (Trend Micro entities)","csro"],["GovTech STACKx Cybersecurity speaker 2025 and 2026","stx26"]],i:[["FedRAMP authorised: Vision One for Government (Dec 2024)","frTrend"]]},
+"ABP Securite":{c:[["ABPCyber Pte Ltd, likely a group affiliate, holds CSA SOC + pentest licences","csro"]]},
+"Check Point Software Technologies":{g:[["CSA MoU (Oct 2015)","csa2015"],["MAS Check Point firewall maintenance via NCS and NTT (Oct 2025)","ncs"]],c:[LIC_SP,["GovTech STACKx Cybersecurity speaker 2025 and 2026","stx26"]],i:[["FedRAMP authorised (Infinity platform)","frCP"]]},
+"Cisco":{g:[["CSA Memorandum of Collaboration (2018, renewed Oct 2024)","cisco24"],["Cisco and Splunk named in MAS, CPF, URA and Singapore Poly tenders via NCS and Ensign (2023–25)","ncs"]],c:[["CSA SG Cyber Safe Advocate (Splunk)","sgcs"],["GovTech STACKx Cybersecurity speaker 2025 and 2026","stx26"]]},
+"CrowdStrike":{g:[["IMDA threat-intel feed subscription, S$713k via Ensign (Apr 2025)","ensST"]],c:[["CSA licence: managed SOC + penetration testing (CrowdStrike, Inc.)","csro"],["GovTech STACKx Cybersecurity speaker 2025 and 2026","stx26"]],i:[["FedRAMP High (Falcon modules)","frCS"]]},
+"Fortinet":{g:[["MoU with NUS Quantum Engineering Programme for the National Quantum-Safe Network (Jun 2022)","fortq"]],c:[["CSA SG Cyber Safe Advocate","sgcs"],["GovTech STACKx Cybersecurity speaker 2025 and 2026","stx26"]],i:[["GovRAMP (US state and local) authorised; no FedRAMP found","grFtnt"]]},
+"Google Cloud Security":{g:[["GovTech with CSA, IMDA, HTX and CSIT: Gemini on air-gapped Google Distributed Cloud (Aug 2025)","googlegdc"],["GCC 2.0 government cloud provider (since Jul 2023)","gcc"],["CSA Memorandum of Cooperation renewed (Oct 2025)","googlecsa"]],c:[["IMDA MTCS Level 3","mtcs"],["CSA licence: managed SOC + penetration testing (Google Asia Pacific)","csro"],["CSA SG Cyber Safe Advocate","sgcs"]]},
+"Huawei International":{g:[["SLA OneMap GPT innovation challenge award (Jan 2024)","huawei"]],c:[["Singapore Common Criteria: NetEngine AR6121 EAL2+ (May 2023)","sccs"],["Huawei Cloud IMDA MTCS Level 3","mtcs"],["CSA SG Cyber Safe Advocate (Oct 2021)","huaweicsa"]]},
+"Lenovo":{c:[["IMDA Digital for Life partner (community programme, not security)","lenovo"]]},
+"NCS":{g:[["482 GeBIZ awards, S$3.78B (2015–26)","ncs"],["GovTech Cybersecurity & Audit Services panel (Oct 2025)","csas"]],c:[LIC_SP]},
+"Broadcom":{g:[["MSF bought Symantec Protection for SharePoint via NCS (Aug 2024)","ncs"]]},
+"Cohesity":{i:[["FedRAMP Moderate (May 2024)","frCohesity"]]},
+"Menlo Security":{i:[["FedRAMP authorised (Jan 2023)","frMenlo"]]},
+"Palo Alto Networks":{g:[["CSA Memorandum of Collaboration (Oct 2016)","panmoc"],["MAS Palo Alto firewall renewal via ST Engineering (Jan 2026)","stes"],["CyberArk (now Palo Alto) bought by MAS, CPF, LTA, URA and BCA via NCS and ST Engineering (2023–26)","ncs"]],c:[LIC_SP,["CSA SG Cyber Safe Advocate","sgcs"],["GovTech STACKx Cybersecurity speaker 2025 and 2026","stx26"]],i:[["FedRAMP High: Cortex, Cortex Cloud, Prisma Access","frPanw"]]},
+"SentinelOne":{i:[["FedRAMP High: Singularity Platform and Data Lake (Sep 2024)","frS1"]]},
+"Abnormal AI":{i:[["FedRAMP Moderate","frAbn"]]},
+"KnowBe4":{i:[["FedRAMP authorised (2019)","frKB4"]]},
+"Netskope":{i:[["FedRAMP High","frNsk"]]},
+"Proofpoint":{c:[["CSA SG Cyber Safe Advocate","sgcs"]],i:[["FedRAMP authorised (email protection)","frPP"]]},
+"Rubrik":{i:[["FedRAMP: Rubrik Security Cloud – Government (Dec 2024)","frRubrik"]]},
+"Thales":{g:[["ICA land checkpoints security and command system (2018–22)","thalesica"]],c:[["CSA licence: managed SOC + penetration testing (Thales Solutions Asia)","csro"]]},
+"Wiz":{c:[["GovTech STACKx Cybersecurity speaker 2026; part of Google since Mar 2026","wizgoog"]],i:[["FedRAMP High","frWiz"]]},
+"Zscaler":{c:[["IMDA MTCS Level 3 (SaaS)","mtcs"],["GovTech STACKx Cybersecurity speaker 2025 and 2026","stx26"]],i:[["FedRAMP High","frZs"]]},
+"Aikido Security":{i:[["CREST member","crest"]]},
+"Amazon Web Services":{g:[["GCC 2.0 government cloud provider (since May 2022)","gcc"]],c:[["IMDA MTCS Level 3","mtcs"],LIC_SP,["GovTech STACKx Cybersecurity speaker 2025 and 2026","stx26"]]},
+"Ansteroid":{c:[CYBERSG]},
+"Assurity Trusted Solutions":{g:[["Wholly owned GovTech subsidiary","assurity"],["GovTech Cybersecurity & Audit Services panel (Oct 2025)","csas"]],c:[["CSA licence: penetration testing","csro"]],i:[["CREST accredited (penetration testing)","crest"]]},
+"Athena Dynamics":{g:[["MPA threat-intel platform and OT monitoring, S$407k (Dec 2025)","athena"],["DSTA cyber training and competitions (2022, 2024)","athena"]],c:[LIC_SP]},
+"BeyondTrust":{i:[["FedRAMP authorised (secure remote access)","frBT"]]},
+"Bitdefender":{g:[["GovTech Cybersecurity & Audit Services panel (Oct 2025)","csas"]],c:[LIC_SP]},
+"Bitsight":{c:[["GovTech STACKx Cybersecurity speaker 2026","stx26"]]},
+"Blancco":{g:[["GovTech PC bulk tender: data erasure for up to 100,000 government PCs (Oct 2021)","blancco"]]},
+"BNF SG":{g:[["GovTech Cybersecurity & Audit Services panel (Oct 2025)","csas"]],c:[["CSA licence: penetration testing","csro"]]},
+"CITIC Telecom CPC":{c:[["IMDA MTCS Level 1","mtcs"],LIC_SP]},
+"Cloudflare":{c:[["GovTech STACKx Cybersecurity speaker 2026","stx26"]],i:[["FedRAMP High","frCF"]]},
+"Cloudsine":{g:[["MCI Youth Cyber Exploration Programme, S$258k (2020)","cloudsine"]],c:[["CyberSG TIG Collaboration Centre (CSA–NUS) company","cloudsinetig"]]},
+"CrimsonLogic":{g:[["26 GeBIZ awards, S$46.6M; Singapore Customs ICS support S$7.5M (Jan 2026)","crimson"],["GovTech ICT services panel (Aug 2025)","crimson"]],c:[LIC_SP]},
+"Datadog":{i:[["FedRAMP High in process","frDatadog"]]},
+"Delinea":{i:[["FedRAMP High (Secret Server)","frDelinea"]]},
+"DNV Business Assurance":{c:[["CSA licence: penetration testing (DNV Singapore)","csro"]]},
+"DT Asia":{g:[["MFA degausser supply, S$1.3M (2016)","dtasia"]]},
+"ECQ (e-Cqurity)":{c:[["CSA licence: penetration testing","csro"]]},
+"Elastic":{g:[["Elastic licences in an MAS tender via NCS (Apr 2022)","ncs"]],i:[["FedRAMP High (Elastic Cloud Hosted)","frElastic"]]},
+"Fortanix":{c:[["IMDA accredited (May 2024)","fortanix"]]},
+"Hack The Box":{c:[["GovTech STACKx Cybersecurity speaker 2026","stx26"]]},
+"Hackuity":{c:[["IMDA accredited (Oct 2023)","hackuity"]]},
+"Insider Security":{c:[CYBERSG]},
+"Inspire-Tech":{g:[["Gambling Regulatory Authority application services, S$338k (Feb 2024)","inspire"]]},
+"ITSEC Asia":{g:[["GovTech Cybersecurity & Audit Services panel (Oct 2025)","csas"],["IMDA breach investigation and forensics panel (Apr 2025)","itsec"]],c:[LIC_SP]},
+"LRQA":{c:[LIC_SP]},
+"Manticore":{c:[["CSA licence: penetration testing (Oct 2025)","csro"],CYBERSG]},
+"Momentum Z":{c:[LIC_SP,["CSA SG Cyber Safe Advocate","sgcs"],CYBERSG]},
+"Netrust":{g:[["13 GeBIZ awards, S$5.5M; SLA authentication and signing software S$1.77M (Sep 2024); MOM (2022, 2025)","netrust"]],c:[["IMDA-accredited certificate authority","netrustca"]]},
+"NSFOCUS":{c:[LIC_SP]},
+"Orange Business":{c:[["IMDA MTCS Level 3","mtcs"],LIC_SP]},
+"OverArX":{c:[CYBERSG]},
+"Ping Identity":{i:[["FedRAMP High (Oct 2023)","frPing"]]},
+"Plainbit":{c:[["CSA licence: managed SOC (Sep 2025)","csro"]]},
+"PQ Station":{c:[CYBERSG]},
+"Red Hat":{g:[["MAS Red Hat Enterprise licences via NCS (Oct 2023)","ncs"]]},
+"SC Cyber (softScheck APAC)":{g:[["GovTech Cybersecurity & Audit Services panel (Oct 2025)","csas"]],c:[["CSA licence: managed SOC + penetration testing (softScheck Singapore)","csro"]]},
+"SecureAge Technology":{c:[["Singapore Common Criteria: SecureData 8.0 EAL2+ (Sep 2023)","sccs"],["CSA SG Cyber Safe Advocate","sgcs"]]},
+"Semperis":{c:[["IMDA accredited (Sep 2026)","semperis"]]},
+"Silverfort":{c:[["Listed in IMDA Innovative Tech Companies Directory","silverfort"]]},
+"Snyk":{i:[["FedRAMP Moderate","frSnyk"]]},
+"Sonatype":{g:[["Sonatype licences in an MAS tender via NCS (Oct 2024)","ncs"]]},
+"SpeQtral":{g:[["Runs IMDA's National Quantum-Safe Network Plus with SPTel (awarded Nov 2023)","nqsn"]]},
+"Strongkeep":{c:[CYBERSG]},
+"Sygnia":{c:[LIC_SP]},
+"Tenable":{g:[["MAS Tenable Security Center via ST Engineering (Jan 2024, Dec 2025)","stes"]],c:[["GovTech STACKx Cybersecurity speaker 2025","stx25"]],i:[["FedRAMP: Tenable One and Tenable Cloud Security","frTenable"]]},
+"Terrabit Networks":{g:[["18 GeBIZ awards, S$18.3M, mostly A*STAR network and security (2017–25)","terrabit"]],c:[LIC_SP]},
+"Toshiba Asia Pacific":{g:[["QKD supplier to IMDA's National Quantum-Safe Network Plus via SpeQtral (Nov 2023)","nqsn"]]},
+"Upwind Security":{i:[["FedRAMP in progress (started Nov 2025)","frUpwind"]]},
+"Waterfall Security Solutions":{c:[["Singapore Common Criteria: WF-600 EAL4+ (Aug 2025), WF-500 EAL4+ (May 2023)","sccs"]]},
+"WhizHack":{c:[["CSA licence: managed SOC (Feb 2026)","csro"]]}
+};
+const EVKEYS=new Set(Object.keys(EV));
+const isOrg=r=>r[3].every(c=>c==="org");
+function sgTier(r){if(isOrg(r))return"x";const e=EV[r[0]];if(e&&e.g&&e.g.length)return"w";if(e&&e.c&&e.c.length)return"r";return"n"}
+const SGL={w:"SG gov work",r:"SG-recognised",n:"None found"};
+
+const TIER={d:"Diamond",pp:"Platinum Plus",p:"Platinum",g:"Gold"};
+const ORDER=DOMAINS.flatMap(d=>d[1]);
+const DOM_OF={};DOMAINS.forEach(([n,ks])=>ks.forEach(k=>DOM_OF[k]=n));
+const state={cat:"all",q:"",spons:false,mine:false,by:"cat",sg:"all"};
+let stars=new Set();
+try{stars=new Set(JSON.parse(localStorage.getItem("gw26stars")||"[]"))}catch(e){}
+try{const s=JSON.parse(localStorage.getItem("gw26state")||"{}");if(s.cat&&(s.cat==="all"||CATS[s.cat]))state.cat=s.cat;if(s.by==="row")state.by="row"}catch(e){}
+const save=()=>{try{localStorage.setItem("gw26stars",JSON.stringify([...stars]));localStorage.setItem("gw26state",JSON.stringify({cat:state.cat,by:state.by}))}catch(e){}};
+
+function boothKey(b){const m=/^([A-Z])(\d+)/i.exec(b);return m?[m[1].toUpperCase(),+m[2]]:["~",0]}
+const byBooth=(a,b)=>{const[x,i]=boothKey(a[1]),[y,j]=boothKey(b[1]);return x<y?-1:x>y?1:i-j||a[0].localeCompare(b[0])};
+X.sort(byBooth);
+
+const chipsEl=document.getElementById("chips");
+function renderChips(){
+  const counts={};for(const r of X)for(const c of r[3])counts[c]=(counts[c]||0)+1;
+  let h=`<button class="chip" data-k="all" aria-pressed="${state.cat==="all"}">All <b>${X.length}</b></button>`;
+  for(const[n,ks]of DOMAINS){h+=`<span class="dom">${n}</span>`+ks.map(k=>`<button class="chip" data-k="${k}" aria-pressed="${state.cat===k}">${CATS[k][0]} <b>${counts[k]||0}</b></button>`).join("")}
+  chipsEl.innerHTML=h;
+}
+chipsEl.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;state.cat=b.dataset.k;save();renderChips();render();const nb=chipsEl.querySelector(`[data-k="${state.cat}"]`);if(nb)nb.scrollIntoView({inline:"nearest",block:"nearest"})});
+
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function evBlock(r){
+  const e=EV[r[0]];if(!e)return"";
+  const sec=(k,h)=>e[k]&&e[k].length?`<div><h4>${h}</h4><ul>${e[k].map(([t,s])=>`<li>${esc(t)}<a href="${SRC[s]}" target="_blank" rel="noopener">source ↗</a></li>`).join("")}</ul></div>`:"";
+  const n=(e.g||[]).length+(e.c||[]).length+(e.i||[]).length;
+  return `<details class="ev"><summary>Track record &amp; certifications (${n})</summary><div class="evb">${sec("g","Singapore government work")}${sec("c","Singapore credentials")}${sec("i","International")}</div></details>`;
+}
+function item(r){
+  const on=stars.has(r[0]);const t=sgTier(r);
+  return `<li><div class="booth">${esc(r[1])}</div><div class="main"><div class="name">${esc(r[0])}${r[2]?`<span class="tier ${r[2]}">${TIER[r[2]]}</span>`:""}${t!=="x"?`<span class="sg ${t}">${SGL[t]}</span>`:""}</div>${r[4]?`<div class="note">${esc(r[4])}</div>`:""}<div class="tags">${r[3].map(c=>`<span class="tag${c===state.cat?" hit":""}">${CATS[c][0]}</span>`).join("")}</div>${evBlock(r)}</div><button class="star" data-n="${esc(r[0])}" aria-pressed="${on}" aria-label="${on?"Remove from":"Add to"} shortlist: ${esc(r[0])}">${on?"★":"☆"}</button></li>`;
+}
+function matches(r,q){
+  if(!q)return true;
+  const b=r[1].toLowerCase();
+  if(b===q||(q.length>1&&b.startsWith(q)))return true;
+  return (r[0]+" "+r[4]+" "+r[3].map(c=>CATS[c][0]).join(" ")).toLowerCase().includes(q);
+}
+function render(){
+  const q=state.q.trim().toLowerCase();
+  const rows=X.filter(r=>(state.cat==="all"||r[3].includes(state.cat))&&(!state.spons||r[2])&&(!state.mine||stars.has(r[0]))&&(state.sg==="all"||sgTier(r)===state.sg)&&matches(r,q));
+  document.getElementById("catnote").innerHTML=state.cat!=="all"?`<p class="catnote"><strong>${CATS[state.cat][0]}.</strong> ${CATS[state.cat][1]}</p>`:"";
+  document.getElementById("status").textContent=`${rows.length} exhibitor${rows.length===1?"":"s"} · ${stars.size} starred`+(state.mine&&!stars.size?" · tap ☆ on any stand to add it":"");
+  const list=document.getElementById("list");
+  if(!rows.length){list.innerHTML=`<div class="empty">${state.mine?"Nothing starred in this view yet. Turn off Shortlist and tap ☆ next to the stands you want.":"No exhibitors match. Clear the search or pick another category."}</div>`;return}
+  let h="";
+  if(state.by==="row"){
+    const groups={};for(const r of rows){const g=boothKey(r[1])[0];(groups[g]=groups[g]||[]).push(r)}
+    h=Object.entries(groups).map(([g,rs])=>`<section class="group"><h2><span>${g==="~"?"No booth listed":"Row "+g}</span>${rs.length} stand${rs.length===1?"":"s"}</h2><ul>${rs.map(item).join("")}</ul></section>`).join("");
+  }else{
+    const keys=state.cat==="all"?ORDER:[state.cat];let lastDom="";
+    for(const k of keys){
+      const rs=rows.filter(r=>r[3].includes(k));if(!rs.length)continue;
+      if(state.cat==="all"&&DOM_OF[k]!==lastDom){lastDom=DOM_OF[k];h+=`<h3 class="domhead">${lastDom}</h3>`}
+      h+=`<section class="group"><h2><span>${CATS[k][0]}</span>${rs.length} stand${rs.length===1?"":"s"}</h2>${state.cat==="all"?`<p class="desc">${CATS[k][1]}</p>`:""}<ul>${rs.map(item).join("")}</ul></section>`;
+    }
+  }
+  list.innerHTML=h;
+}
+document.getElementById("list").addEventListener("click",e=>{const b=e.target.closest(".star");if(!b)return;const n=b.dataset.n;stars.has(n)?stars.delete(n):stars.add(n);save();render()});
+document.getElementById("q").addEventListener("input",e=>{state.q=e.target.value;render()});
+for(const id of ["spons","mine"])document.getElementById(id).addEventListener("click",e=>{state[id]=!state[id];e.currentTarget.setAttribute("aria-pressed",state[id]);render()});
+function setBy(v){state.by=v;document.getElementById("byCat").setAttribute("aria-pressed",v==="cat");document.getElementById("byRow").setAttribute("aria-pressed",v==="row");save();render()}
+document.getElementById("byCat").addEventListener("click",()=>setBy("cat"));
+document.getElementById("byRow").addEventListener("click",()=>setBy("row"));
+const sgCounts={w:0,r:0,n:0};for(const r of X){const t=sgTier(r);if(t!=="x")sgCounts[t]++}
+const sgEl=document.getElementById("sgseg");
+function renderSg(){sgEl.innerHTML=[["all","All"],["w",SGL.w],["r",SGL.r],["n",SGL.n]].map(([k,l])=>`<button data-k="${k}" aria-pressed="${state.sg===k}">${l}${k!=="all"?`<b>${sgCounts[k]}</b>`:""}</button>`).join("")}
+sgEl.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;state.sg=b.dataset.k;renderSg();render()});
+document.getElementById("summary").innerHTML=`<div class="w"><b>${sgCounts.w}</b>vendors with Singapore government work on record</div><div class="r"><b>${sgCounts.r}</b>with a Singapore licence, certification or programme role only</div><div><b>${sgCounts.n}</b>with nothing found in Singapore sources</div>`;
+renderSg();setBy(state.by);renderChips();
+</script>
+
+</body></html>
